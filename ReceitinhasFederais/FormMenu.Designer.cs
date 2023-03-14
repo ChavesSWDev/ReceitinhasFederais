@@ -38,6 +38,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.panelChildForm = new System.Windows.Forms.Panel();
             this.panelSideMenu.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -46,6 +49,8 @@
             // 
             this.panelSideMenu.AutoScroll = true;
             this.panelSideMenu.BackColor = System.Drawing.Color.NavajoWhite;
+            this.panelSideMenu.Controls.Add(this.button4);
+            this.panelSideMenu.Controls.Add(this.button3);
             this.panelSideMenu.Controls.Add(this.button2);
             this.panelSideMenu.Controls.Add(this.button1);
             this.panelSideMenu.Controls.Add(this.btnReceitas);
@@ -67,7 +72,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(250, 45);
             this.button2.TabIndex = 3;
-            this.button2.Text = "Adicionar Receita";
+            this.button2.Text = "Inserir Texto";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
@@ -86,6 +91,7 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnReceitas
             // 
@@ -156,6 +162,45 @@
             this.panel3.Size = new System.Drawing.Size(443, 27);
             this.panel3.TabIndex = 0;
             // 
+            // button3
+            // 
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(-3, 313);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(250, 45);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Inserir Texto";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(-3, 364);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(250, 45);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Inserir Texto";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // panelChildForm
+            // 
+            this.panelChildForm.Location = new System.Drawing.Point(248, 0);
+            this.panelChildForm.Name = "panelChildForm";
+            this.panelChildForm.Size = new System.Drawing.Size(536, 521);
+            this.panelChildForm.TabIndex = 3;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -165,6 +210,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelSideMenu);
+            this.Controls.Add(this.panelChildForm);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -186,5 +232,8 @@
         private Panel panel2;
         private Panel panel3;
         private Button button6;
+        private Button button4;
+        private Button button3;
+        private Panel panelChildForm;
     }
 }
