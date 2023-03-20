@@ -9,7 +9,8 @@ namespace ReceitinhasFederais
 
         private void button1_Click(object sender, EventArgs e)
         {
-            openChildForm(new AdicionarReceitas());
+            //openChildForm(new AdicionarReceitas()); comentario
+            //mais comentario
         }
 
         private MainMenu activeForm = null;
