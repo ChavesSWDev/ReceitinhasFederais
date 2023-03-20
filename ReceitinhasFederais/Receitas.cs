@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReceitinhasFederais
 {
-    internal class Receitas
+    public class Receitas
     {
         public string Titulo { get; set; }
         public string Ingredientes { get; set; }

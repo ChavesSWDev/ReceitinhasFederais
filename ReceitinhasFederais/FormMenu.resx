@@ -61,7 +61,7 @@
   <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAAAmhJREFUWEftmLvPDFEYh5eEhoQW0blLKFSilygkEpdKQ6GloiFElK6REELnUonQ
+        DwAACw8BkvkDpQAAAmhJREFUWEftmLvPDFEYh5eEhoQW0blLKFSilygkEpdKQ6GloiFElK6REELnUonQ
         oVO7JS6Vjr8AHcHzzJmZTD6zZ863e2YlzC95su/Meeec375zLtkd/etaDgfgyBhsWwZ/RSvhM/zq4BOs
         gJnrDGjgMGwbg23mnIaZ6wY4eJfMMTerlsIhaJtXFc/BwdvamphjbltbhWMtgWTtBTueJY6ZrAWwBT6U
         tM2vHFT9O5ZjzlsvSvrS1P0PBksmVqyDPXA7hLVOwPEQ1roJu0P4h3o12LYPtuWbM24fjPWfpFgHg8EU
@@ -11272,7 +11272,7 @@
         pZRSSunQ0rWRUkoppZRSSimlQ0vXRkoppZRSSimllA4lDf5fUU89eYAOPtgAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="panel1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAYAAAB/HSuDAAAA+2lDQ1BpY2MAACjPY2BgPMEABCwGDAy5
         eSVFQe5OChGRUQoMSCAxubiAATdgZGD4dg1EMjBc1mUgHXCmpBYnA+kPQKxSBLQcaKQIkC2SDmFrgNhJ

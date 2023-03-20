@@ -51,6 +51,7 @@
             this.Controls.Add(this.button1);
             this.Name = "AdicionarReceitas";
             this.Text = "AdicionarReceitas";
+            this.Load += new System.EventHandler(this.AdicionarReceitas_Load);
             this.ResumeLayout(false);
 
         }

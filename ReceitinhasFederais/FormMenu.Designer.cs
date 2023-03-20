@@ -34,13 +34,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnReceitas = new System.Windows.Forms.Button();
             this.panelLogoMenu = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dgvMostraReceitas = new System.Windows.Forms.Panel();
             this.panelChildForm = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dgvMostraReceitas = new System.Windows.Forms.DataGridView();
             this.btnPesquisaReceitas = new System.Windows.Forms.Button();
             this.cbPesquisaReceitas = new System.Windows.Forms.ComboBox();
             this.panelSideMenu.SuspendLayout();
             this.panelChildForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostraReceitas)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -72,6 +74,7 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -105,6 +108,7 @@
             this.btnReceitas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReceitas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReceitas.UseVisualStyleBackColor = true;
+            this.btnReceitas.Click += new System.EventHandler(this.btnReceitas_Click);
             // 
             // panelLogoMenu
             // 
@@ -117,32 +121,45 @@
             this.panelLogoMenu.Size = new System.Drawing.Size(250, 163);
             this.panelLogoMenu.TabIndex = 0;
             // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(300, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(443, 244);
-            this.panel1.TabIndex = 1;
-            // 
-            // dgvMostraReceitas
-            // 
-            this.dgvMostraReceitas.AutoScroll = true;
-            this.dgvMostraReceitas.BackColor = System.Drawing.Color.NavajoWhite;
-            this.dgvMostraReceitas.Location = new System.Drawing.Point(300, 321);
-            this.dgvMostraReceitas.Name = "dgvMostraReceitas";
-            this.dgvMostraReceitas.Size = new System.Drawing.Size(443, 188);
-            this.dgvMostraReceitas.TabIndex = 2;
-            // 
             // panelChildForm
             // 
+            this.panelChildForm.Controls.Add(this.pictureBox1);
+            this.panelChildForm.Controls.Add(this.dgvMostraReceitas);
             this.panelChildForm.Controls.Add(this.btnPesquisaReceitas);
             this.panelChildForm.Controls.Add(this.cbPesquisaReceitas);
             this.panelChildForm.Location = new System.Drawing.Point(248, 0);
             this.panelChildForm.Name = "panelChildForm";
             this.panelChildForm.Size = new System.Drawing.Size(536, 521);
             this.panelChildForm.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(52, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(443, 244);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // dgvMostraReceitas
+            // 
+            this.dgvMostraReceitas.AllowUserToAddRows = false;
+            this.dgvMostraReceitas.AllowUserToDeleteRows = false;
+            this.dgvMostraReceitas.AllowUserToResizeColumns = false;
+            this.dgvMostraReceitas.AllowUserToResizeRows = false;
+            this.dgvMostraReceitas.BackgroundColor = System.Drawing.Color.NavajoWhite;
+            this.dgvMostraReceitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMostraReceitas.Location = new System.Drawing.Point(52, 321);
+            this.dgvMostraReceitas.MultiSelect = false;
+            this.dgvMostraReceitas.Name = "dgvMostraReceitas";
+            this.dgvMostraReceitas.ReadOnly = true;
+            this.dgvMostraReceitas.RowHeadersVisible = false;
+            this.dgvMostraReceitas.RowTemplate.Height = 25;
+            this.dgvMostraReceitas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMostraReceitas.Size = new System.Drawing.Size(443, 188);
+            this.dgvMostraReceitas.TabIndex = 2;
             // 
             // btnPesquisaReceitas
             // 
@@ -184,16 +201,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(784, 521);
-            this.Controls.Add(this.dgvMostraReceitas);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelSideMenu);
             this.Controls.Add(this.panelChildForm);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Receitinhas Federais";
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.panelSideMenu.ResumeLayout(false);
             this.panelChildForm.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostraReceitas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -202,13 +221,13 @@
 
         private Panel panelSideMenu;
         private Panel panelLogoMenu;
-        private Panel panel1;
         private Button btnReceitas;
         private Button button1;
         private Button button2;
-        private Panel dgvMostraReceitas;
         private Panel panelChildForm;
         private ComboBox cbPesquisaReceitas;
         private Button btnPesquisaReceitas;
+        private DataGridView dgvMostraReceitas;
+        private PictureBox pictureBox1;
     }
 }
