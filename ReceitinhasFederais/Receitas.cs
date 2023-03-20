@@ -45,4 +45,5 @@ namespace ReceitinhasFederais
             Categoria = categoria;
             QntdPratos = qntdpratos;
         }
+    }
 }

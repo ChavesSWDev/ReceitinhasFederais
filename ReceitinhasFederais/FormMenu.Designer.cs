@@ -35,22 +35,18 @@
             this.btnReceitas = new System.Windows.Forms.Button();
             this.panelLogoMenu = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.dgvMostraReceitas = new System.Windows.Forms.Panel();
             this.panelChildForm = new System.Windows.Forms.Panel();
+            this.btnPesquisaReceitas = new System.Windows.Forms.Button();
+            this.cbPesquisaReceitas = new System.Windows.Forms.ComboBox();
             this.panelSideMenu.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelChildForm.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSideMenu
             // 
             this.panelSideMenu.AutoScroll = true;
             this.panelSideMenu.BackColor = System.Drawing.Color.NavajoWhite;
-            this.panelSideMenu.Controls.Add(this.button4);
-            this.panelSideMenu.Controls.Add(this.button3);
             this.panelSideMenu.Controls.Add(this.button2);
             this.panelSideMenu.Controls.Add(this.button1);
             this.panelSideMenu.Controls.Add(this.btnReceitas);
@@ -72,7 +68,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(250, 45);
             this.button2.TabIndex = 3;
-            this.button2.Text = "Inserir Texto";
+            this.button2.Text = "Excluir Receita";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
@@ -83,6 +79,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(-3, 211);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(250, 45);
@@ -126,80 +123,60 @@
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Location = new System.Drawing.Point(300, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(443, 307);
+            this.panel1.Size = new System.Drawing.Size(443, 244);
             this.panel1.TabIndex = 1;
             // 
-            // panel2
+            // dgvMostraReceitas
             // 
-            this.panel2.AutoScroll = true;
-            this.panel2.BackColor = System.Drawing.Color.NavajoWhite;
-            this.panel2.Controls.Add(this.button6);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Location = new System.Drawing.Point(300, 343);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(443, 166);
-            this.panel2.TabIndex = 2;
-            // 
-            // button6
-            // 
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button6.Location = new System.Drawing.Point(0, 0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(443, 27);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Receitas";
-            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(443, 27);
-            this.panel3.TabIndex = 0;
-            // 
-            // button3
-            // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(-3, 313);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(250, 45);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Inserir Texto";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(-3, 364);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(250, 45);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Inserir Texto";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
+            this.dgvMostraReceitas.AutoScroll = true;
+            this.dgvMostraReceitas.BackColor = System.Drawing.Color.NavajoWhite;
+            this.dgvMostraReceitas.Location = new System.Drawing.Point(300, 321);
+            this.dgvMostraReceitas.Name = "dgvMostraReceitas";
+            this.dgvMostraReceitas.Size = new System.Drawing.Size(443, 188);
+            this.dgvMostraReceitas.TabIndex = 2;
             // 
             // panelChildForm
             // 
+            this.panelChildForm.Controls.Add(this.btnPesquisaReceitas);
+            this.panelChildForm.Controls.Add(this.cbPesquisaReceitas);
             this.panelChildForm.Location = new System.Drawing.Point(248, 0);
             this.panelChildForm.Name = "panelChildForm";
             this.panelChildForm.Size = new System.Drawing.Size(536, 521);
             this.panelChildForm.TabIndex = 3;
+            // 
+            // btnPesquisaReceitas
+            // 
+            this.btnPesquisaReceitas.BackColor = System.Drawing.Color.Lime;
+            this.btnPesquisaReceitas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPesquisaReceitas.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnPesquisaReceitas.Location = new System.Drawing.Point(413, 291);
+            this.btnPesquisaReceitas.Name = "btnPesquisaReceitas";
+            this.btnPesquisaReceitas.Size = new System.Drawing.Size(82, 23);
+            this.btnPesquisaReceitas.TabIndex = 1;
+            this.btnPesquisaReceitas.Text = "Pesquisar";
+            this.btnPesquisaReceitas.UseVisualStyleBackColor = false;
+            // 
+            // cbPesquisaReceitas
+            // 
+            this.cbPesquisaReceitas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPesquisaReceitas.FormattingEnabled = true;
+            this.cbPesquisaReceitas.Items.AddRange(new object[] {
+            "Todos os dados das Receitas",
+            "Título",
+            "Ingredientes",
+            "Modo de Preparo",
+            "Dificuldade Fácil",
+            "Dificuldade Média",
+            "Dificuldade Difícil",
+            "Dificuldade Experiente",
+            "Autor",
+            "Tempo de Preparo",
+            "Categoria",
+            "Quantidade de Porções"});
+            this.cbPesquisaReceitas.Location = new System.Drawing.Point(52, 292);
+            this.cbPesquisaReceitas.Name = "cbPesquisaReceitas";
+            this.cbPesquisaReceitas.Size = new System.Drawing.Size(355, 23);
+            this.cbPesquisaReceitas.TabIndex = 0;
             // 
             // MainMenu
             // 
@@ -207,7 +184,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(784, 521);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.dgvMostraReceitas);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelSideMenu);
             this.Controls.Add(this.panelChildForm);
@@ -216,7 +193,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Receitinhas Federais";
             this.panelSideMenu.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.panelChildForm.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -229,11 +206,9 @@
         private Button btnReceitas;
         private Button button1;
         private Button button2;
-        private Panel panel2;
-        private Panel panel3;
-        private Button button6;
-        private Button button4;
-        private Button button3;
+        private Panel dgvMostraReceitas;
         private Panel panelChildForm;
+        private ComboBox cbPesquisaReceitas;
+        private Button btnPesquisaReceitas;
     }
 }
