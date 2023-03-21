@@ -18,14 +18,26 @@ namespace ReceitinhasFederais
         public AdicionarReceitas()
         {
             InitializeComponent();
+
+            this.AutoScroll = true;
+            this.VerticalScroll.Enabled = true;
+            this.VerticalScroll.Visible = true;
+
+            cbCategoria.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //fecha a aba(form)
             this.Close();
         }
 
         private void AdicionarReceitas_Load(object sender, EventArgs e)
+        {
+            //só ta aq por estar
+        }
+
+        private void btnAdicionarReceita_Click(object sender, EventArgs e)
         {
 
         }

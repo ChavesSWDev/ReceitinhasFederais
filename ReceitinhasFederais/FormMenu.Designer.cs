@@ -35,6 +35,7 @@
             this.btnReceitas = new System.Windows.Forms.Button();
             this.panelLogoMenu = new System.Windows.Forms.Panel();
             this.panelChildForm = new System.Windows.Forms.Panel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvMostraReceitas = new System.Windows.Forms.DataGridView();
             this.btnPesquisaReceitas = new System.Windows.Forms.Button();
@@ -123,6 +124,7 @@
             // 
             // panelChildForm
             // 
+            this.panelChildForm.Controls.Add(this.splitter1);
             this.panelChildForm.Controls.Add(this.pictureBox1);
             this.panelChildForm.Controls.Add(this.dgvMostraReceitas);
             this.panelChildForm.Controls.Add(this.btnPesquisaReceitas);
@@ -131,6 +133,15 @@
             this.panelChildForm.Name = "panelChildForm";
             this.panelChildForm.Size = new System.Drawing.Size(536, 521);
             this.panelChildForm.TabIndex = 3;
+            // 
+            // splitter1
+            // 
+            this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 521);
+            this.splitter1.TabIndex = 4;
+            this.splitter1.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -229,5 +240,6 @@
         private Button btnPesquisaReceitas;
         private DataGridView dgvMostraReceitas;
         private PictureBox pictureBox1;
+        private Splitter splitter1;
     }
 }
