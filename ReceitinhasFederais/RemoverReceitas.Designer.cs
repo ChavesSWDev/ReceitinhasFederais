@@ -127,6 +127,7 @@
             this.button3.TabIndex = 20;
             this.button3.Text = "Remover";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // RemoverReceitas
             // 
@@ -145,6 +146,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RemoverReceitas";
             this.Text = "Remover Receitas";
+            this.Load += new System.EventHandler(this.RemoverReceitas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostraReceitas)).EndInit();
             this.ResumeLayout(false);
