@@ -58,5 +58,10 @@ namespace ReceitinhasFederais
         {
             openChildForm(new RemoverReceitas());
         }
+
+        private void cbPesquisaReceitas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //comentario
+        }
     }
 }
