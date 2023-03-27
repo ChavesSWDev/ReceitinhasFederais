@@ -125,60 +125,82 @@ namespace ReceitinhasFederais
                 Receitas Receitas = new Receitas(titulo, ingredientes, modopreparo, dificuldade, autor, tempopreparo, categoria, qntdpratos);
 
                 Program.ListaReceitas.Add(Receitas);
-                MessageBox.Show("Receita Cadastrada com Sucesso!");
                 //os dados da receita nova foram adicionados à lista
 
                 //converter a lista das receitas para Json
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(Program.ListaReceitas, Newtonsoft.Json.Formatting.Indented);
 
+                
 
-                try
+                string LeArquivo1 = File.ReadAllText(Program.caminhoTXT);
+                var desconverteLeArquivo1 = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(LeArquivo1);
+                for (int i = 0; i < desconverteLeArquivo1.Count; i++)
                 {
-                    if (File.Exists(Program.caminhoTXT))
+                    auxTitulo = desconverteLeArquivo1[i].Titulo;
+                    if (auxTitulo == titulo)
                     {
-                        string LeArquivo = File.ReadAllText(Program.caminhoTXT);
-                        if (LeArquivo.Length != 0)
-                        {
-                            var desconverteLeArquivo = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(LeArquivo);
-                            foreach (var pegaDado in desconverteLeArquivo)
-                            {
-                                auxTitulo = pegaDado.Titulo;
-                                auxIngredientes = pegaDado.Ingredientes;
-                                auxModoPreparo = pegaDado.ModoPreparo;
-                                auxDificuldade = pegaDado.GrauDificuldade;
-                                auxAutor = pegaDado.Autor;
-                                auxTempoPreparo = pegaDado.TempoPreparo;
-                                auxCategoria = pegaDado.Categoria;
-                                auxQntdPratos = pegaDado.QntdPratos;
-
-                                Program.ListaReceitas.Add(new Receitas(auxTitulo, auxIngredientes, auxModoPreparo, auxDificuldade, auxAutor, auxTempoPreparo, auxCategoria, auxQntdPratos));
-                            }
-                            string json2 = Newtonsoft.Json.JsonConvert.SerializeObject(Program.ListaReceitas, Newtonsoft.Json.Formatting.Indented);
-                            File.WriteAllText(Program.caminhoTXT, json2);
-                            Program.ListaReceitas.Clear();
-                        }
-                        else
-                        {
-                            File.WriteAllText(Program.caminhoTXT, json);
-                            Program.ListaReceitas.Clear();
-                        }
+                        MessageBox.Show("Já tem uma receita com esse título cadastrada!\nPor favor, insira outro nome!");
+                        txtTitulo.Text = "";
+                        errorProvider1.SetError(txtTitulo, "Campo Obrigatório!");
+                        erros = true;
+                        break;
                     }
-                } catch
-                {
-                    MessageBox.Show("O arquivo do banco de dados não existe por algum motivo!");
                 }
 
-                txtTitulo.Text = "";
-                txtModoPreparo.Text = "";
-                txtAutor.Text = "";
-                txtIngredientes.Text = "";
-                txtTempoPreparo.Text = "";
-                cbCategoria.Text = "";
-                rdoFacil.Checked = false;
-                rdoDificil.Checked = false;
-                rdoMedio.Checked = false;
-                rdoExperiente.Checked = false;
-                qntdPratos.Value = 1;
+                if(erros != true)
+                {
+                    try
+                    {
+                        if (File.Exists(Program.caminhoTXT))
+                        {
+                            string LeArquivo = File.ReadAllText(Program.caminhoTXT);
+                            if (LeArquivo.Length != 0)
+                            {
+                                var desconverteLeArquivo = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(LeArquivo);
+
+                                foreach (var pegaDado in desconverteLeArquivo)
+                                {
+                                    auxTitulo = pegaDado.Titulo;
+                                    auxIngredientes = pegaDado.Ingredientes;
+                                    auxModoPreparo = pegaDado.ModoPreparo;
+                                    auxDificuldade = pegaDado.GrauDificuldade;
+                                    auxAutor = pegaDado.Autor;
+                                    auxTempoPreparo = pegaDado.TempoPreparo;
+                                    auxCategoria = pegaDado.Categoria;
+                                    auxQntdPratos = pegaDado.QntdPratos;
+
+                                    Program.ListaReceitas.Add(new Receitas(auxTitulo, auxIngredientes, auxModoPreparo, auxDificuldade, auxAutor, auxTempoPreparo, auxCategoria, auxQntdPratos));
+                                }
+                                string json2 = Newtonsoft.Json.JsonConvert.SerializeObject(Program.ListaReceitas, Newtonsoft.Json.Formatting.Indented);
+                                File.WriteAllText(Program.caminhoTXT, json2);
+                                MessageBox.Show("Receita Cadastrada com Sucesso!");
+                                Program.ListaReceitas.Clear();
+                            }
+                            else
+                            {
+                                File.WriteAllText(Program.caminhoTXT, json);
+                                MessageBox.Show("Receita Cadastrada com Sucesso!");
+                                Program.ListaReceitas.Clear();
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("O arquivo do banco de dados não existe por algum motivo!");
+                    }
+
+                    txtTitulo.Text = "";
+                    txtModoPreparo.Text = "";
+                    txtAutor.Text = "";
+                    txtIngredientes.Text = "";
+                    txtTempoPreparo.Text = "";
+                    cbCategoria.Text = "";
+                    rdoFacil.Checked = false;
+                    rdoDificil.Checked = false;
+                    rdoMedio.Checked = false;
+                    rdoExperiente.Checked = false;
+                    qntdPratos.Value = 1;
+                }
             }
 
         }

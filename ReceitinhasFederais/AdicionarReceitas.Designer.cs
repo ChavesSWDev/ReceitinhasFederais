@@ -283,9 +283,19 @@
             // qntdPratos
             // 
             this.qntdPratos.Location = new System.Drawing.Point(182, 555);
+            this.qntdPratos.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.qntdPratos.Name = "qntdPratos";
             this.qntdPratos.Size = new System.Drawing.Size(75, 23);
             this.qntdPratos.TabIndex = 31;
+            this.qntdPratos.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label10
             // 
