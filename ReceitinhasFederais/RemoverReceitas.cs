@@ -74,5 +74,10 @@ namespace ReceitinhasFederais
                 MessageBox.Show("Não há receitas cadastradas!");
             }
         }
+
+        private void dgvMostraReceitas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

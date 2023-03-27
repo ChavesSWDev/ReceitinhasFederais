@@ -91,13 +91,21 @@
             // 
             // dgvMostraReceitas
             // 
+            this.dgvMostraReceitas.AllowUserToAddRows = false;
+            this.dgvMostraReceitas.AllowUserToDeleteRows = false;
+            this.dgvMostraReceitas.AllowUserToResizeRows = false;
             this.dgvMostraReceitas.BackgroundColor = System.Drawing.Color.NavajoWhite;
             this.dgvMostraReceitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMostraReceitas.Location = new System.Drawing.Point(26, 308);
+            this.dgvMostraReceitas.MultiSelect = false;
             this.dgvMostraReceitas.Name = "dgvMostraReceitas";
+            this.dgvMostraReceitas.ReadOnly = true;
+            this.dgvMostraReceitas.RowHeadersVisible = false;
             this.dgvMostraReceitas.RowTemplate.Height = 25;
+            this.dgvMostraReceitas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMostraReceitas.Size = new System.Drawing.Size(459, 213);
             this.dgvMostraReceitas.TabIndex = 17;
+            this.dgvMostraReceitas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMostraReceitas_CellContentClick);
             // 
             // label2
             // 

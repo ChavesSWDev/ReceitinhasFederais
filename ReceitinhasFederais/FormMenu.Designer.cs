@@ -40,7 +40,6 @@
             this.dgvMostraReceitas = new System.Windows.Forms.DataGridView();
             this.btnPesquisaReceitas = new System.Windows.Forms.Button();
             this.cbPesquisaReceitas = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelSideMenu.SuspendLayout();
             this.panelChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -51,7 +50,6 @@
             // 
             this.panelSideMenu.AutoScroll = true;
             this.panelSideMenu.BackColor = System.Drawing.Color.NavajoWhite;
-            this.panelSideMenu.Controls.Add(this.label1);
             this.panelSideMenu.Controls.Add(this.button2);
             this.panelSideMenu.Controls.Add(this.button1);
             this.panelSideMenu.Controls.Add(this.btnReceitas);
@@ -173,6 +171,8 @@
             this.dgvMostraReceitas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMostraReceitas.Size = new System.Drawing.Size(443, 188);
             this.dgvMostraReceitas.TabIndex = 2;
+            this.dgvMostraReceitas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMostraReceitas_CellContentClick);
+            this.dgvMostraReceitas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMostraReceitas_CellDoubleClick);
             // 
             // btnPesquisaReceitas
             // 
@@ -185,6 +185,7 @@
             this.btnPesquisaReceitas.TabIndex = 1;
             this.btnPesquisaReceitas.Text = "Pesquisar";
             this.btnPesquisaReceitas.UseVisualStyleBackColor = false;
+            this.btnPesquisaReceitas.Click += new System.EventHandler(this.btnPesquisaReceitas_Click);
             // 
             // cbPesquisaReceitas
             // 
@@ -209,15 +210,6 @@
             this.cbPesquisaReceitas.TabIndex = 0;
             this.cbPesquisaReceitas.SelectedIndexChanged += new System.EventHandler(this.cbPesquisaReceitas_SelectedIndexChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(94, 378);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -228,12 +220,13 @@
             this.Controls.Add(this.panelChildForm);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(800, 560);
+            this.MinimumSize = new System.Drawing.Size(800, 560);
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Receitinhas Federais";
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.panelSideMenu.ResumeLayout(false);
-            this.panelSideMenu.PerformLayout();
             this.panelChildForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMostraReceitas)).EndInit();
@@ -254,6 +247,5 @@
         private DataGridView dgvMostraReceitas;
         private PictureBox pictureBox1;
         private Splitter splitter1;
-        private Label label1;
     }
 }
