@@ -37,23 +37,24 @@ namespace ReceitinhasFederais
             //só ta aq por estar
         }
 
+        //esse é o botao verde de add receita
         private void btnAdicionarReceita_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
             bool erros = false;
-
-            if(
+            //esse if da linha 46 ate 93 é pra verificar se os campos estão preenchidos ou n, se estiver blz, se não ele da erro
+            if (
 
                 txtTitulo.Text.Trim() == "" ||
                 txtIngredientes.Text.Trim() == "" ||
                 txtModoPreparo.Text.Trim() == "" ||
                 txtAutor.Text.Trim() == "" ||
-                rdoFacil.Checked == false && 
+                rdoFacil.Checked == false &&
                 rdoMedio.Checked == false &&
-                rdoDificil.Checked == false && 
-                rdoExperiente.Checked == false || 
+                rdoDificil.Checked == false &&
+                rdoExperiente.Checked == false ||
                 txtTempoPreparo.Text.Trim() == ""
-                
+
               )
             {
                 MessageBox.Show("É necessário preencher todos os campos!");
@@ -91,8 +92,10 @@ namespace ReceitinhasFederais
                 erros = true;
             }
 
-            if(erros == false)
+            //se n tiver erro, ou seja os campos estao preenchidos, ele vai fazer isso aq
+            if (erros == false)
             {
+                //variaveis recebendo os valores de cada campo preenchido
                 string titulo = txtTitulo.Text;
                 string autor = txtAutor.Text;
                 string ingredientes = txtIngredientes.Text;
@@ -122,35 +125,41 @@ namespace ReceitinhasFederais
                 if (rdoExperiente.Checked)
                     dificuldade = "Experiente";
 
+                //criando uma receita com os valores de cada campo
                 Receitas Receitas = new Receitas(titulo, ingredientes, modopreparo, dificuldade, autor, tempopreparo, categoria, qntdpratos);
 
-                Program.ListaReceitas.Add(Receitas);
                 //os dados da receita nova foram adicionados à lista
+                Program.ListaReceitas.Add(Receitas);
 
                 //converter a lista das receitas para Json
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(Program.ListaReceitas, Newtonsoft.Json.Formatting.Indented);
 
-                
-
+                //aqui vai ler o arquivo e verificar se tem algum titulo igual ao que foi digitado
                 string LeArquivo1 = File.ReadAllText(Program.caminhoTXT);
                 var desconverteLeArquivo1 = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(LeArquivo1);
-                for (int i = 0; i < desconverteLeArquivo1.Count; i++)
+                if (desconverteLeArquivo1 != null)
                 {
-                    auxTitulo = desconverteLeArquivo1[i].Titulo;
-                    if (auxTitulo == titulo)
+                    //percorre o desconverteLeArquivo1 que é uma lista de Receitas q foi desconvertido do arquivo txt
+                    for (int i = 0; i < desconverteLeArquivo1.Count; i++)
                     {
-                        MessageBox.Show("Já tem uma receita com esse título cadastrada!\nPor favor, insira outro nome!");
-                        txtTitulo.Text = "";
-                        errorProvider1.SetError(txtTitulo, "Campo Obrigatório!");
-                        erros = true;
-                        break;
+                        auxTitulo = desconverteLeArquivo1[i].Titulo;
+                        if (auxTitulo == titulo)
+                        {
+                            MessageBox.Show("Já tem uma receita com esse título cadastrada!\nPor favor, insira outro nome!");
+                            txtTitulo.Text = "";
+                            errorProvider1.SetError(txtTitulo, "Campo Obrigatório!");
+                            erros = true;
+                            break;
+                        }
                     }
                 }
 
-                if(erros != true)
+                //continuando caso não ter acontecido nenhum erro
+                if (erros != true)
                 {
                     try
                     {
+                        //se o arquivo existe, le o arquivo e faz outra var desconverteLeArquivo do tipo Lista de Receitas
                         if (File.Exists(Program.caminhoTXT))
                         {
                             string LeArquivo = File.ReadAllText(Program.caminhoTXT);
@@ -158,6 +167,7 @@ namespace ReceitinhasFederais
                             {
                                 var desconverteLeArquivo = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(LeArquivo);
 
+                                //cada valor auxiliar recebe o valor da receita lá dentro do arquivo
                                 foreach (var pegaDado in desconverteLeArquivo)
                                 {
                                     auxTitulo = pegaDado.Titulo;
@@ -169,8 +179,10 @@ namespace ReceitinhasFederais
                                     auxCategoria = pegaDado.Categoria;
                                     auxQntdPratos = pegaDado.QntdPratos;
 
+                                    //adicionando todas as receitas do arquivo na lista que está rodando no programa agora
                                     Program.ListaReceitas.Add(new Receitas(auxTitulo, auxIngredientes, auxModoPreparo, auxDificuldade, auxAutor, auxTempoPreparo, auxCategoria, auxQntdPratos));
                                 }
+                                //convertendo a lista pra json pra escrever no banco.txt dnv
                                 string json2 = Newtonsoft.Json.JsonConvert.SerializeObject(Program.ListaReceitas, Newtonsoft.Json.Formatting.Indented);
                                 File.WriteAllText(Program.caminhoTXT, json2);
                                 MessageBox.Show("Receita Cadastrada com Sucesso!");
@@ -178,6 +190,7 @@ namespace ReceitinhasFederais
                             }
                             else
                             {
+                                //caso nao ter nenhuma receita cadastrada, ele só vai cadastrar a receita q ele acabou de adicionar os dados
                                 File.WriteAllText(Program.caminhoTXT, json);
                                 MessageBox.Show("Receita Cadastrada com Sucesso!");
                                 Program.ListaReceitas.Clear();
@@ -186,9 +199,15 @@ namespace ReceitinhasFederais
                     }
                     catch
                     {
-                        MessageBox.Show("O arquivo do banco de dados não existe por algum motivo!");
+                        MessageBox.Show("O arquivo do banco de dados não existe por algum motivo!\nPara corrigir esse problema, tente reiniciar o programa.");
                     }
-
+                    //o código acima foi feito para o seguinte:
+                    //vamos supor que dentro do arquivo já tem 10 receitas, e estamos usando o File.WriteAllText, e ele SOBRE ESCREVE o arquivo TODO
+                    //ou seja, qnd usamos o File.WriteAllText, ele DELETA tudo oq tá la dentro e ESCREVE tudo dnv com os dados ATUAIS do programa
+                    //então é por isso que serve as variáveis auxiliares, para caso o arquivo existir e caso ter dados lá dentro, as variáveis auxiliares
+                    //receberem os valores das receitas lá dentro, e botar elas na lista atual que está rodando no programa, isso vai fazer com que
+                    //tanto os dados que estavam lá dentro do arquivo, quanto os que estão rodando agora no programa, possam ser manipulados e salvos da forma correta
+                    //ou seja, não perde os dados do arquivo e tbm adiciona os novos, tudo junto e sem repetir nenhuma receita por acidente.
                     txtTitulo.Text = "";
                     txtModoPreparo.Text = "";
                     txtAutor.Text = "";
