@@ -14,12 +14,19 @@ namespace ReceitinhasFederais
     {
         public FormMostraDados(string data)
         {
+            //esse form vai mostrar os dados vindo do clique duplo que o usuário fizer qnd tiver vendo os dados das receitas
+            //a string data ali em cima é a referência do clique duplo
             InitializeComponent();
             txtData.Text = data;
             txtData.Multiline = true;
         }
 
         private void txtData_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtData_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -8,6 +8,7 @@ namespace ReceitinhasFederais
 {
     public class Receitas
     {
+        //isso aq é só a classe das receitas com métodos get e set para manipulação caso necessário e também com o construtor. geral sabe fazer isso
         public string Titulo { get; set; }
         public string Ingredientes { get; set; }
         public string ModoPreparo { get; set; }

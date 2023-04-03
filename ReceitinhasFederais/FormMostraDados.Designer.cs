@@ -40,6 +40,7 @@
             this.txtData.Size = new System.Drawing.Size(487, 283);
             this.txtData.TabIndex = 0;
             this.txtData.Text = "";
+            this.txtData.TextChanged += new System.EventHandler(this.txtData_TextChanged);
             // 
             // FormMostraDados
             // 

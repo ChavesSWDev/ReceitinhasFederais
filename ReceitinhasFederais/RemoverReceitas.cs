@@ -19,11 +19,45 @@ namespace ReceitinhasFederais
         {
             InitializeComponent();
 
-            string caminhoTXT = @"c:\PastaReceitas\BancoDeReceitas.txt";
-            string lerArquivoReceitas = File.ReadAllText(caminhoTXT);
+            //verifica se alguma receita do programa tem o nome idêntico a uma existente
+            string lerArquivoReceitas = File.ReadAllText(Program.caminhoTXT);
             var DesconverteLerArquivoReceitas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(lerArquivoReceitas);
+            List<Receitas> receitasDuplicadas = new List<Receitas>();
+            List<Receitas> receitasUnicas = new List<Receitas>();
+            bool TituloRepete = false;
 
-            if(DesconverteLerArquivoReceitas != null)
+            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+            {
+                if (DesconverteLerArquivoReceitas.Count(r => r.Titulo == pegaDado.Titulo) > 1)
+                {
+                    receitasDuplicadas.Add(pegaDado);
+                    TituloRepete = true;
+                }
+                else
+                {
+                    receitasUnicas.Add(pegaDado);
+                }
+            }
+
+            if (TituloRepete)
+            {
+                MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido, terão números aleatórios adicionados ao final.");
+            }
+
+            // adiciona um numero inteiro ao final de cada título da receita duplicada
+            Random random = new Random();
+            foreach (Receitas pegaDado in receitasDuplicadas)
+            {
+                pegaDado.Titulo = "Receita-" + random.Next().ToString();
+            }
+            List<Receitas> novaLista = receitasUnicas.Concat(receitasDuplicadas).ToList();
+            string serializeSalvarDados2 = Newtonsoft.Json.JsonConvert.SerializeObject(novaLista, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados2);
+
+            //qnd essa janela for selecionada, ele vai fazer um data grid view retornar apenas o TITULO de TODAS as receitas cadastradas no banco.
+            string caminhoTXT = @"c:\PastaReceitas\BancoDeReceitas.txt";
+
+            if (DesconverteLerArquivoReceitas != null)
             {
                 dgvMostraReceitas.Rows.Clear();
                 dgvMostraReceitas.Columns.Clear();
@@ -40,18 +74,58 @@ namespace ReceitinhasFederais
 
         }
 
+        //esse botao fecha a janela
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //esse é aquele botao vermelho de remover
         private void button3_Click(object sender, EventArgs e)
         {
             string caminhoTXT = @"c:\PastaReceitas\BancoDeReceitas.txt";
             string lerArquivoReceitas = File.ReadAllText(caminhoTXT);
             var DesconverteLerArquivoReceitas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(lerArquivoReceitas);
+            bool receitaEncontrada = false;
 
-            for(int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+            //verifica se alguma receita do programa tem o nome idêntico a uma existente
+            List<Receitas> receitasDuplicadas = new List<Receitas>();
+            List<Receitas> receitasUnicas = new List<Receitas>();
+            bool TituloRepete = false;
+
+            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+            {
+                if (DesconverteLerArquivoReceitas.Count(r => r.Titulo == pegaDado.Titulo) > 1)
+                {
+                    receitasDuplicadas.Add(pegaDado);
+                    TituloRepete = true;
+                }
+                else
+                {
+                    receitasUnicas.Add(pegaDado);
+                }
+            }
+
+            if (TituloRepete)
+            {
+                MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido, terão números aleatórios adicionados ao final.");
+            }
+
+            // adiciona um numero inteiro ao final de cada título da receita duplicada
+            Random random = new Random();
+            foreach (Receitas pegaDado in receitasDuplicadas)
+            {
+                pegaDado.Titulo = "Receita-" + random.Next().ToString();
+            }
+            List<Receitas> novaLista = receitasUnicas.Concat(receitasDuplicadas).ToList();
+            string serializeSalvarDados2 = Newtonsoft.Json.JsonConvert.SerializeObject(novaLista, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados2);
+
+            //ele vai percorrer todas as receitas do banco, remover a receita que tenha o título idêntico ao que foi digitado
+            //e mandar pro arquivo com os dados atualizados de que a receita foi excluída com sucesso.
+            //a variavel receitaEncontrada fica true, ou seja encontrou a receita com o titulo desejado e excluiu, se não ele da um erro
+            //dizendo q n foi encontrada a receita com o titulo desejado
+            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
             {
                 if (txtRemoveReceita.Text.Equals(DesconverteLerArquivoReceitas[i].Titulo))
                 {
@@ -59,13 +133,43 @@ namespace ReceitinhasFederais
                     string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
                     File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
                     MessageBox.Show("Você deteletou a receita [" + txtRemoveReceita.Text + "] com sucesso!");
-                } else
-                {
-                    MessageBox.Show("Não há uma receita com este Título cadastrada no sistema!");
+                    receitaEncontrada = true;
+                    //caso a receita seja deletada, para atualizar o data grid view após clicar no botão ele faz esse if
+                    //e caso o conteúdo lá dentro seja diferente de nulo, ele vai retornar 
+                    lerArquivoReceitas = File.ReadAllText(caminhoTXT);
+                    if (lerArquivoReceitas.Length > 2)
+                    {
+                        txtRemoveReceita.Text = null;
+                        dgvMostraReceitas.Rows.Clear();
+                        dgvMostraReceitas.Columns.Clear();
+
+                        dgvMostraReceitas.Columns.Add("Titulo", "Titulo");
+
+                        foreach (var pegaDados in DesconverteLerArquivoReceitas)
+                        {
+                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo);
+                        }
+
+                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    }
+                    else
+                    {
+                        txtRemoveReceita.Text = null;
+                        dgvMostraReceitas.Rows.Clear();
+                        dgvMostraReceitas.Columns.Clear();
+                        MessageBox.Show("Não há receitas cadastradas!");
+                    }
                 }
+            }
+
+            if (!receitaEncontrada)
+            {
+                txtRemoveReceita.Text = null;
+                MessageBox.Show("Não foi encontrada nenhuma receita com o título inserido.");
             }
         }
 
+        //se nao tiver receita cadastrada, mostrar a mensagem abaixo
         private void RemoverReceitas_Load(object sender, EventArgs e)
         {
             string lerArquivoReceitas = File.ReadAllText(Program.caminhoTXT);
