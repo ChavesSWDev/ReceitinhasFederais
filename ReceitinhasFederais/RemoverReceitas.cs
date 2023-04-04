@@ -88,6 +88,58 @@ namespace ReceitinhasFederais
             var DesconverteLerArquivoReceitas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(lerArquivoReceitas);
             bool receitaEncontrada = false;
 
+            //================ INICIO DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+            //================ INICIO DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+            //================ INICIO DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+
+            //verifica se alguma receita do programa tem a quantidade de porções menor que 1, se tiver, muda pra 1
+            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+            {
+                if (DesconverteLerArquivoReceitas[i].QntdPratos < 1)
+                {
+                    MessageBox.Show("Alguma receita foi alterada indevidamente\nA quantidade de porções foi reduzida para um valor abaixo de 1, e isso não é permitido, por conta disso o valor foi alterado para 1.");
+                    DesconverteLerArquivoReceitas[i].QntdPratos = 1;
+                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                }
+            }
+            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+
+            //================================================================================
+
+            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+
+            //verifica se alguma receita do programa tem o grau de dificuldade diferente do especificado, e se tiver será alterado para "Fácil"
+            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+            {
+                if (
+                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Fácil" &&
+                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Médio" &&
+                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Difícil" &&
+                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Experiente"
+                    )
+                {
+                    MessageBox.Show("Alguma receita foi alterada indevidamente\nO Grau de Dificuldade foi alterado para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua dificuldade será alterada para [FÁCIL]");
+                    DesconverteLerArquivoReceitas[i].GrauDificuldade = "Fácil";
+                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                }
+            }
+
+            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+
+            //================================================================================
+
+            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+
             //verifica se alguma receita do programa tem o nome idêntico a uma existente
             List<Receitas> receitasDuplicadas = new List<Receitas>();
             List<Receitas> receitasUnicas = new List<Receitas>();
@@ -108,7 +160,7 @@ namespace ReceitinhasFederais
 
             if (TituloRepete)
             {
-                MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido, terão números aleatórios adicionados ao final.");
+                MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido serão renomeadas para [Receita-ValorX].");
             }
 
             // adiciona um numero inteiro ao final de cada título da receita duplicada
@@ -120,6 +172,38 @@ namespace ReceitinhasFederais
             List<Receitas> novaLista = receitasUnicas.Concat(receitasDuplicadas).ToList();
             string serializeSalvarDados2 = Newtonsoft.Json.JsonConvert.SerializeObject(novaLista, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(Program.caminhoTXT, serializeSalvarDados2);
+
+            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+
+            //============================================================================
+
+            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+
+            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+            {
+                if (
+                        DesconverteLerArquivoReceitas[i].Categoria != "Acompanhamento" &&
+                        DesconverteLerArquivoReceitas[i].Categoria != "Bebida" &&
+                        DesconverteLerArquivoReceitas[i].Categoria != "Prato Principal" &&
+                        DesconverteLerArquivoReceitas[i].Categoria != "Sobremesa" &&
+                        DesconverteLerArquivoReceitas[i].Categoria != "Salada" &&
+                        DesconverteLerArquivoReceitas[i].Categoria != "Não Especificada"
+                    )
+                {
+                    MessageBox.Show("Alguma receita foi alterada indevidamente\nA [Categoria] foi alterada para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua [Categoria] será alterada para [Não Especificada]");
+                    DesconverteLerArquivoReceitas[i].Categoria = "Não Especificada";
+                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                }
+            }
+
+            //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+            //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+            //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
 
             //ele vai percorrer todas as receitas do banco, remover a receita que tenha o título idêntico ao que foi digitado
             //e mandar pro arquivo com os dados atualizados de que a receita foi excluída com sucesso.
@@ -166,6 +250,29 @@ namespace ReceitinhasFederais
             {
                 txtRemoveReceita.Text = null;
                 MessageBox.Show("Não foi encontrada nenhuma receita com o título inserido.");
+                lerArquivoReceitas = File.ReadAllText(caminhoTXT);
+                if (lerArquivoReceitas.Length > 2)
+                {
+                    txtRemoveReceita.Text = null;
+                    dgvMostraReceitas.Rows.Clear();
+                    dgvMostraReceitas.Columns.Clear();
+
+                    dgvMostraReceitas.Columns.Add("Titulo", "Titulo");
+
+                    foreach (var pegaDados in DesconverteLerArquivoReceitas)
+                    {
+                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo);
+                    }
+
+                    dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                }
+                else
+                {
+                    txtRemoveReceita.Text = null;
+                    dgvMostraReceitas.Rows.Clear();
+                    dgvMostraReceitas.Columns.Clear();
+                    MessageBox.Show("Não há receitas cadastradas!");
+                }
             }
         }
 

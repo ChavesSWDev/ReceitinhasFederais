@@ -260,6 +260,7 @@
             this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Items.AddRange(new object[] {
+            "Não Especificado",
             "Acompanhamento",
             "Bebida",
             "Prato Principal",

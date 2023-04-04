@@ -41,6 +41,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -168,12 +171,44 @@
     "de\r\nchegar de fazer isso é deletando a receita e adicionando uma nova sem comete" +
     "r os \r\nerros";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label13.Location = new System.Drawing.Point(12, 464);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(500, 187);
+            this.label13.TabIndex = 15;
+            this.label13.Text = resources.GetString("label13.Text");
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(84, 429);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(347, 15);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "____________________________________________________________________";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(12, 444);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(337, 20);
+            this.label15.TabIndex = 13;
+            this.label15.Text = "Ocorreu algum erro inesperado o que eu faço?";
+            // 
             // FormDuvidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(520, 482);
+            this.ClientSize = new System.Drawing.Size(520, 602);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
@@ -209,5 +244,8 @@
         private Label label6;
         private Label label9;
         private Label label12;
+        private Label label13;
+        private Label label14;
+        private Label label15;
     }
 }
