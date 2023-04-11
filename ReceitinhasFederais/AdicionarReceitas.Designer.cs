@@ -79,9 +79,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(160, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 30);
+            this.label1.Size = new System.Drawing.Size(179, 30);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Adicionar Receita";
+            this.label1.Text = "Adicionar receita";
             // 
             // button2
             // 
@@ -149,7 +149,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(130, 20);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Modo de Preparo";
+            this.label4.Text = "Modo de preparo";
             // 
             // label5
             // 
@@ -175,9 +175,9 @@
             this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.Location = new System.Drawing.Point(311, 394);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(147, 20);
+            this.label6.Size = new System.Drawing.Size(145, 20);
             this.label6.TabIndex = 21;
-            this.label6.Text = "Grau de Dificuldade";
+            this.label6.Text = "Grau de dificuldade";
             // 
             // rdoFacil
             // 
@@ -243,7 +243,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(137, 20);
             this.label7.TabIndex = 26;
-            this.label7.Text = "Tempo de Preparo";
+            this.label7.Text = "Tempo de preparo";
             // 
             // label8
             // 
@@ -279,7 +279,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(180, 20);
             this.label9.TabIndex = 30;
-            this.label9.Text = "Rendimento em Porções";
+            this.label9.Text = "Rendimento em porções";
             // 
             // qntdPratos
             // 

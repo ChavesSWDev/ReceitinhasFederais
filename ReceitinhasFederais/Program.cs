@@ -43,22 +43,11 @@ namespace ReceitinhasFederais
                 MessageBox.Show("Não foi possível concluir as operações de criar pasta ou arquivo.txt.");
             }
 
-            if (!File.Exists(caminhoTXTaux))
-            {
-                File.Create(caminhoTXTaux);
-                File.WriteAllText(caminhoTXTaux, "kvhshxvdcpehvhdrolnpebzdrprrqhod\r\nkwmolsatpiwczxqzhkefffftlkgwipgj\r\ndzzkebiqtmtbuwdcdcxwbyvhlnjgpeiz\r\ntnngvhxgvrucyqooyxntrygmrefpbuck\r\nthnlqymfgvbjthcmbrlxkkmwlwlgiwsq\r\nnqoupiofsjhaxganbfarmgnzehlegbll\r\njfxfcofsimuthhgbkrrsrcgbflrnnjgn\r\netldezyvekmcengqgkvlcgnxikpxvlys\r\nrbvwyybwxgfihlfteghseasfwqzoerol\r\nqttogodumzrheydcacdvnclrhxndtwxd");
-            }
-            else
-            {
-                File.WriteAllText(caminhoTXTaux, "kvhshxvdcpehvhdrolnpebzdrprrqhod\r\nkwmolsatpiwczxqzhkefffftlkgwipgj\r\ndzzkebiqtmtbuwdcdcxwbyvhlnjgpeiz\r\ntnngvhxgvrucyqooyxntrygmrefpbuck\r\nthnlqymfgvbjthcmbrlxkkmwlwlgiwsq\r\nnqoupiofsjhaxganbfarmgnzehlegbll\r\njfxfcofsimuthhgbkrrsrcgbflrnnjgn\r\netldezyvekmcengqgkvlcgnxikpxvlys\r\nrbvwyybwxgfihlfteghseasfwqzoerol\r\nqttogodumzrheydcacdvnclrhxndtwxd");
-            }
-
             Application.Run(new MainMenu());
         }
 
         //trocar por " y: " caso estiver na facul e nao funcionar o codigo abaixo
         public static string caminhoTXT = @"c:\PastaReceitas\BancoDeReceitas.txt";
-        public static string caminhoTXTaux = @"c:\PastaReceitas\BancoReceitas.txt";
 
 
         //trocar por " y: " caso estiver na facul e nao funcionar o codigo abaixo

@@ -95,7 +95,7 @@
             this.btnExcluirReceita.Name = "btnExcluirReceita";
             this.btnExcluirReceita.Size = new System.Drawing.Size(250, 45);
             this.btnExcluirReceita.TabIndex = 6;
-            this.btnExcluirReceita.Text = "Excluir Receita";
+            this.btnExcluirReceita.Text = "Excluir receita";
             this.btnExcluirReceita.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExcluirReceita.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluirReceita.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@
             this.btnAdicionarReceita.Name = "btnAdicionarReceita";
             this.btnAdicionarReceita.Size = new System.Drawing.Size(250, 45);
             this.btnAdicionarReceita.TabIndex = 5;
-            this.btnAdicionarReceita.Text = "Adicionar Receita";
+            this.btnAdicionarReceita.Text = "Adicionar receita";
             this.btnAdicionarReceita.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdicionarReceita.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdicionarReceita.UseVisualStyleBackColor = true;
@@ -177,9 +177,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(317, 274);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 15);
+            this.label1.Size = new System.Drawing.Size(88, 15);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Filtro de Dados";
+            this.label1.Text = "Filtro de dados";
             // 
             // txtPesquisarDado
             // 

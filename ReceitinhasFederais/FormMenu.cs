@@ -30,31 +30,37 @@ namespace ReceitinhasFederais
 
             string lerArquivoReceitas = File.ReadAllText(Program.caminhoTXT);
             var DesconverteLerArquivoReceitas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(lerArquivoReceitas);
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+            if(DesconverteLerArquivoReceitas != null)
             {
-                if (DesconverteLerArquivoReceitas[i].QntdPratos < 1)
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nA quantidade de porções foi reduzida para um valor abaixo de 1, e isso não é permitido, por conta disso o valor foi alterado para 1.");
-                    DesconverteLerArquivoReceitas[i].QntdPratos = 1;
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    if (DesconverteLerArquivoReceitas[i].QntdPratos < 1)
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nA quantidade de porções foi reduzida para um valor abaixo de 1, e isso não é permitido, por conta disso o valor foi alterado para 1.");
+                        DesconverteLerArquivoReceitas[i].QntdPratos = 1;
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
                 }
             }
 
             //verifica se alguma receita do programa tem o grau de dificuldade diferente do especificado, e se tiver será alterado para "Fácil"
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+            if(DesconverteLerArquivoReceitas != null)
             {
-                if (
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Fácil" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Médio" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Difícil" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Experiente"
-                    )
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nO Grau de Dificuldade foi alterado para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua dificuldade será alterada para [FÁCIL]");
-                    DesconverteLerArquivoReceitas[i].GrauDificuldade = "Fácil";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    if (
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Fácil" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Médio" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Difícil" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Experiente"
+                        )
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nO Grau de Dificuldade foi alterado para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua dificuldade será alterada para [FÁCIL]");
+                        DesconverteLerArquivoReceitas[i].GrauDificuldade = "Fácil";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
                 }
             }
         }
@@ -86,7 +92,6 @@ namespace ReceitinhasFederais
 
             string hoverCbPesquisaReceitas = "Escolher o tipo de dado.";
             toolTip.SetToolTip(cbPesquisaReceitas, hoverCbPesquisaReceitas);
-
             txtPesquisarDado.Select();
         }
 
@@ -149,120 +154,123 @@ namespace ReceitinhasFederais
             //verifica se alguma receita do programa tem a quantidade de porções menor que 1, se tiver, muda pra 1
             string lerArquivoReceitas = File.ReadAllText(Program.caminhoTXT);
             var DesconverteLerArquivoReceitas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(lerArquivoReceitas);
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+            if(DesconverteLerArquivoReceitas != null)
             {
-                if (DesconverteLerArquivoReceitas[i].QntdPratos < 1)
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nA quantidade de porções foi reduzida para um valor abaixo de 1, e isso não é permitido, por conta disso o valor foi alterado para 1.");
-                    DesconverteLerArquivoReceitas[i].QntdPratos = 1;
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    if (DesconverteLerArquivoReceitas[i].QntdPratos < 1)
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nA quantidade de porções foi reduzida para um valor abaixo de 1, e isso não é permitido, por conta disso o valor foi alterado para 1.");
+                        DesconverteLerArquivoReceitas[i].QntdPratos = 1;
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
                 }
-            }
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
 
-            //================================================================================
+                //================================================================================
 
-            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
 
-            //verifica se alguma receita do programa tem o grau de dificuldade diferente do especificado, e se tiver será alterado para "Fácil"
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
-            {
-                if (
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Fácil" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Médio" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Difícil" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Experiente"
-                    )
+                //verifica se alguma receita do programa tem o grau de dificuldade diferente do especificado, e se tiver será alterado para "Fácil"
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nO Grau de Dificuldade foi alterado para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua dificuldade será alterada para [FÁCIL]");
-                    DesconverteLerArquivoReceitas[i].GrauDificuldade = "Fácil";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    if (
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Fácil" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Médio" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Difícil" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Experiente"
+                        )
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nO Grau de Dificuldade foi alterado para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua dificuldade será alterada para [FÁCIL]");
+                        DesconverteLerArquivoReceitas[i].GrauDificuldade = "Fácil";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
                 }
-            }
 
-            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
 
-            //================================================================================
+                //================================================================================
 
-            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
 
-            //verifica se alguma receita do programa tem o nome idêntico a uma existente
-            List<Receitas> receitasDuplicadas = new List<Receitas>();
-            List<Receitas> receitasUnicas = new List<Receitas>();
-            bool TituloRepete = false;
+                //verifica se alguma receita do programa tem o nome idêntico a uma existente
+                List<Receitas> receitasDuplicadas = new List<Receitas>();
+                List<Receitas> receitasUnicas = new List<Receitas>();
+                bool TituloRepete = false;
 
-            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
-            {
-                if (DesconverteLerArquivoReceitas.Count(r => r.Titulo == pegaDado.Titulo) > 1)
+                foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
                 {
-                    receitasDuplicadas.Add(pegaDado);
-                    TituloRepete = true;
+                    if (DesconverteLerArquivoReceitas.Count(r => r.Titulo == pegaDado.Titulo) > 1)
+                    {
+                        receitasDuplicadas.Add(pegaDado);
+                        TituloRepete = true;
+                    }
+                    else
+                    {
+                        receitasUnicas.Add(pegaDado);
+                    }
                 }
-                else
+
+                if (TituloRepete)
                 {
-                    receitasUnicas.Add(pegaDado);
+                    MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido serão renomeadas para [Receita-ValorX].");
                 }
-            }
 
-            if (TituloRepete)
-            {
-                MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido serão renomeadas para [Receita-ValorX].");
-            }
-
-            // adiciona um numero inteiro ao final de cada título da receita duplicada
-            Random random = new Random();
-            foreach (Receitas pegaDado in receitasDuplicadas)
-            {
-                pegaDado.Titulo = "Receita-" + random.Next().ToString();
-            }
-            List<Receitas> novaLista = receitasUnicas.Concat(receitasDuplicadas).ToList();
-            string serializeSalvarDados2 = Newtonsoft.Json.JsonConvert.SerializeObject(novaLista, Newtonsoft.Json.Formatting.Indented);
-            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados2);
-
-            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-
-            //============================================================================
-
-            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
-            {
-                if (
-                        DesconverteLerArquivoReceitas[i].Categoria != "Acompanhamento" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Bebida" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Prato Principal" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Sobremesa" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Salada" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Não Especificada"
-                    )
+                // adiciona um numero inteiro ao final de cada título da receita duplicada
+                Random random = new Random();
+                foreach (Receitas pegaDado in receitasDuplicadas)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nA [Categoria] foi alterada para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua [Categoria] será alterada para [Não Especificada]");
-                    DesconverteLerArquivoReceitas[i].Categoria = "Não Especificada";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    pegaDado.Titulo = "Receita-" + random.Next().ToString();
                 }
+                List<Receitas> novaLista = receitasUnicas.Concat(receitasDuplicadas).ToList();
+                string serializeSalvarDados2 = Newtonsoft.Json.JsonConvert.SerializeObject(novaLista, Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(Program.caminhoTXT, serializeSalvarDados2);
+
+                //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+
+                //============================================================================
+
+                //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+                {
+                    if (
+                            DesconverteLerArquivoReceitas[i].Categoria != "Acompanhamento" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Bebida" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Prato Principal" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Sobremesa" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Salada" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Não Especificada"
+                        )
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nA [Categoria] foi alterada para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua [Categoria] será alterada para [Não Especificada]");
+                        DesconverteLerArquivoReceitas[i].Categoria = "Não Especificada";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+                }
+
+                //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+
+
+                txtPesquisarDado.Select();
             }
-
-            //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-
-
-            txtPesquisarDado.Select();
         }
 
         //esse botao mostra o menu de add receita
@@ -284,111 +292,114 @@ namespace ReceitinhasFederais
             //verifica se alguma receita do programa tem a quantidade de porções menor que 1, se tiver, muda pra 1
             string lerArquivoReceitas = File.ReadAllText(Program.caminhoTXT);
             var DesconverteLerArquivoReceitas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(lerArquivoReceitas);
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+            if(DesconverteLerArquivoReceitas != null)
             {
-                if (DesconverteLerArquivoReceitas[i].QntdPratos < 1)
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nA quantidade de porções foi reduzida para um valor abaixo de 1, e isso não é permitido, por conta disso o valor foi alterado para 1.");
-                    DesconverteLerArquivoReceitas[i].QntdPratos = 1;
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    if (DesconverteLerArquivoReceitas[i].QntdPratos < 1)
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nA quantidade de porções foi reduzida para um valor abaixo de 1, e isso não é permitido, por conta disso o valor foi alterado para 1.");
+                        DesconverteLerArquivoReceitas[i].QntdPratos = 1;
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
                 }
-            }
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
 
-            //================================================================================
+                //================================================================================
 
-            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
 
-            //verifica se alguma receita do programa tem o grau de dificuldade diferente do especificado, e se tiver será alterado para "Fácil"
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
-            {
-                if (
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Fácil" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Médio" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Difícil" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Experiente"
-                    )
+                //verifica se alguma receita do programa tem o grau de dificuldade diferente do especificado, e se tiver será alterado para "Fácil"
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nO Grau de Dificuldade foi alterado para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua dificuldade será alterada para [FÁCIL]");
-                    DesconverteLerArquivoReceitas[i].GrauDificuldade = "Fácil";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    if (
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Fácil" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Médio" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Difícil" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Experiente"
+                        )
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nO Grau de Dificuldade foi alterado para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua dificuldade será alterada para [FÁCIL]");
+                        DesconverteLerArquivoReceitas[i].GrauDificuldade = "Fácil";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
                 }
-            }
 
-            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
 
-            //================================================================================
+                //================================================================================
 
-            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
 
-            //verifica se alguma receita do programa tem o nome idêntico a uma existente
-            List<Receitas> receitasDuplicadas = new List<Receitas>();
-            List<Receitas> receitasUnicas = new List<Receitas>();
-            bool TituloRepete = false;
+                //verifica se alguma receita do programa tem o nome idêntico a uma existente
+                List<Receitas> receitasDuplicadas = new List<Receitas>();
+                List<Receitas> receitasUnicas = new List<Receitas>();
+                bool TituloRepete = false;
 
-            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
-            {
-                if (DesconverteLerArquivoReceitas.Count(r => r.Titulo == pegaDado.Titulo) > 1)
+                foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
                 {
-                    receitasDuplicadas.Add(pegaDado);
-                    TituloRepete = true;
+                    if (DesconverteLerArquivoReceitas.Count(r => r.Titulo == pegaDado.Titulo) > 1)
+                    {
+                        receitasDuplicadas.Add(pegaDado);
+                        TituloRepete = true;
+                    }
+                    else
+                    {
+                        receitasUnicas.Add(pegaDado);
+                    }
                 }
-                else
+
+                if (TituloRepete)
                 {
-                    receitasUnicas.Add(pegaDado);
+                    MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido serão renomeadas para [Receita-ValorX].");
                 }
-            }
 
-            if (TituloRepete)
-            {
-                MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido serão renomeadas para [Receita-ValorX].");
-            }
-
-            // adiciona um numero inteiro ao final de cada título da receita duplicada
-            Random random = new Random();
-            foreach (Receitas pegaDado in receitasDuplicadas)
-            {
-                pegaDado.Titulo = "Receita-" + random.Next().ToString();
-            }
-            List<Receitas> novaLista = receitasUnicas.Concat(receitasDuplicadas).ToList();
-            string serializeSalvarDados2 = Newtonsoft.Json.JsonConvert.SerializeObject(novaLista, Newtonsoft.Json.Formatting.Indented);
-            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados2);
-
-            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-
-            //============================================================================
-
-            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
-            {
-                if (
-                        DesconverteLerArquivoReceitas[i].Categoria != "Acompanhamento" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Bebida" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Prato Principal" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Sobremesa" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Salada" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Não Especificada"
-                    )
+                // adiciona um numero inteiro ao final de cada título da receita duplicada
+                Random random = new Random();
+                foreach (Receitas pegaDado in receitasDuplicadas)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nA [Categoria] foi alterada para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua [Categoria] será alterada para [Não Especificada]");
-                    DesconverteLerArquivoReceitas[i].Categoria = "Não Especificada";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    pegaDado.Titulo = "Receita-" + random.Next().ToString();
+                }
+                List<Receitas> novaLista = receitasUnicas.Concat(receitasDuplicadas).ToList();
+                string serializeSalvarDados2 = Newtonsoft.Json.JsonConvert.SerializeObject(novaLista, Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(Program.caminhoTXT, serializeSalvarDados2);
+
+                //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+
+                //============================================================================
+
+                //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+                {
+                    if (
+                            DesconverteLerArquivoReceitas[i].Categoria != "Acompanhamento" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Bebida" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Prato Principal" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Sobremesa" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Salada" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Não Especificada"
+                        )
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nA [Categoria] foi alterada para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua [Categoria] será alterada para [Não Especificada]");
+                        DesconverteLerArquivoReceitas[i].Categoria = "Não Especificada";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
                 }
             }
 
@@ -418,408 +429,202 @@ namespace ReceitinhasFederais
             //verifica se alguma receita do programa tem a quantidade de porções menor que 1, se tiver, muda pra 1
             string lerArquivoReceitas = File.ReadAllText(Program.caminhoTXT);
             var DesconverteLerArquivoReceitas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Receitas>>(lerArquivoReceitas);
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+            if(DesconverteLerArquivoReceitas != null)
             {
-                if (DesconverteLerArquivoReceitas[i].Titulo == null)
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                 {
-                    DesconverteLerArquivoReceitas[i].Titulo = "Arquivo Corrompido.";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                } else if (DesconverteLerArquivoReceitas[i].Ingredientes == null)
-                {
-                    DesconverteLerArquivoReceitas[i].Ingredientes = "Arquivo Corrompido.";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                } else if(DesconverteLerArquivoReceitas[i].ModoPreparo == null)
-                {
-                    DesconverteLerArquivoReceitas[i].ModoPreparo = "Arquivo Corrompido.";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                } else if(DesconverteLerArquivoReceitas[i].Categoria == null)
-                {
-                    DesconverteLerArquivoReceitas[i].Categoria = "Arquivo Corrompido.";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                } else if(DesconverteLerArquivoReceitas[i].GrauDificuldade == null)
-                {
-                    DesconverteLerArquivoReceitas[i].GrauDificuldade = "Arquivo Corrompido.";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                } else if(DesconverteLerArquivoReceitas[i].QntdPratos == null)
-                {
-                    DesconverteLerArquivoReceitas[i].QntdPratos = 1;
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                } else if(DesconverteLerArquivoReceitas[i].Autor == null)
-                {
-                    DesconverteLerArquivoReceitas[i].Autor = "Arquivo Corrompido.";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                } else if(DesconverteLerArquivoReceitas[i].TempoPreparo == null)
-                {
-                    DesconverteLerArquivoReceitas[i].TempoPreparo = "Arquivo Corrompido.";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    if (DesconverteLerArquivoReceitas[i].Titulo == null)
+                    {
+                        DesconverteLerArquivoReceitas[i].Titulo = "Arquivo Corrompido.";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+                    else if (DesconverteLerArquivoReceitas[i].Ingredientes == null)
+                    {
+                        DesconverteLerArquivoReceitas[i].Ingredientes = "Arquivo Corrompido.";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+                    else if (DesconverteLerArquivoReceitas[i].ModoPreparo == null)
+                    {
+                        DesconverteLerArquivoReceitas[i].ModoPreparo = "Arquivo Corrompido.";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+                    else if (DesconverteLerArquivoReceitas[i].Categoria == null)
+                    {
+                        DesconverteLerArquivoReceitas[i].Categoria = "Arquivo Corrompido.";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+                    else if (DesconverteLerArquivoReceitas[i].GrauDificuldade == null)
+                    {
+                        DesconverteLerArquivoReceitas[i].GrauDificuldade = "Arquivo Corrompido.";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+                    else if (DesconverteLerArquivoReceitas[i].QntdPratos == null)
+                    {
+                        DesconverteLerArquivoReceitas[i].QntdPratos = 1;
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+                    else if (DesconverteLerArquivoReceitas[i].Autor == null)
+                    {
+                        DesconverteLerArquivoReceitas[i].Autor = "Arquivo Corrompido.";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+                    else if (DesconverteLerArquivoReceitas[i].TempoPreparo == null)
+                    {
+                        DesconverteLerArquivoReceitas[i].TempoPreparo = "Arquivo Corrompido.";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+
                 }
-                
-            }
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
 
-            //================================================================================
+                //================================================================================
 
-            //================ INICIO DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ INICIO DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ INICIO DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
 
-            //verifica se alguma receita do programa tem a quantidade de porções menor que 1, se tiver, muda pra 1
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
-            {
-                if (DesconverteLerArquivoReceitas[i].QntdPratos < 1)
+                //verifica se alguma receita do programa tem a quantidade de porções menor que 1, se tiver, muda pra 1
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nA quantidade de porções foi reduzida para um valor abaixo de 1, e isso não é permitido, por conta disso o valor foi alterado para 1.");
-                    DesconverteLerArquivoReceitas[i].QntdPratos = 1;
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    if (DesconverteLerArquivoReceitas[i].QntdPratos < 1)
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nA quantidade de porções foi reduzida para um valor abaixo de 1, e isso não é permitido, por conta disso o valor foi alterado para 1.");
+                        DesconverteLerArquivoReceitas[i].QntdPratos = 1;
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
                 }
-            }
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
-            //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
+                //================ FINAL DA CORREÇÃO DO ERRO DE PORÇÕES MENOR QUE 1 ================
 
-            //================================================================================
+                //================================================================================
 
-            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ INICIO DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
 
-            //verifica se alguma receita do programa tem o grau de dificuldade diferente do especificado, e se tiver será alterado para "Fácil"
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
-            {
-                if (
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Fácil" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Médio" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Difícil" &&
-                        DesconverteLerArquivoReceitas[i].GrauDificuldade != "Experiente"
-                    )
+                //verifica se alguma receita do programa tem o grau de dificuldade diferente do especificado, e se tiver será alterado para "Fácil"
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                 {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nO Grau de Dificuldade foi alterado para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua dificuldade será alterada para [FÁCIL]");
-                    DesconverteLerArquivoReceitas[i].GrauDificuldade = "Fácil";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    if (
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Fácil" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Médio" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Difícil" &&
+                            DesconverteLerArquivoReceitas[i].GrauDificuldade != "Experiente"
+                        )
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nO Grau de Dificuldade foi alterado para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua dificuldade será alterada para [FÁCIL]");
+                        DesconverteLerArquivoReceitas[i].GrauDificuldade = "Fácil";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
                 }
-            }
 
-            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
-            //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
+                //================ FIM DA CORREÇÃO DO ERRO DE GRAU DE DIFICULDADE ================
 
-            //================================================================================
+                //================================================================================
 
-            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ INICIO CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
 
-            //verifica se alguma receita do programa tem o nome idêntico a uma existente
-            List<Receitas> receitasDuplicadas = new List<Receitas>();
-            List<Receitas> receitasUnicas = new List<Receitas>();
-            bool TituloRepete = false;
+                //verifica se alguma receita do programa tem o nome idêntico a uma existente
+                List<Receitas> receitasDuplicadas = new List<Receitas>();
+                List<Receitas> receitasUnicas = new List<Receitas>();
+                bool TituloRepete = false;
 
-            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
-            {
-                if (DesconverteLerArquivoReceitas.Count(r => r.Titulo == pegaDado.Titulo) > 1)
+                foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
                 {
-                    receitasDuplicadas.Add(pegaDado);
-                    TituloRepete = true;
+                    if (DesconverteLerArquivoReceitas.Count(r => r.Titulo == pegaDado.Titulo) > 1)
+                    {
+                        receitasDuplicadas.Add(pegaDado);
+                        TituloRepete = true;
+                    }
+                    else
+                    {
+                        receitasUnicas.Add(pegaDado);
+                    }
+                }
+
+                if (TituloRepete)
+                {
+                    MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido serão renomeadas para [Receita-ValorX].");
+                }
+
+                // adiciona um numero inteiro ao final de cada título da receita duplicada
+                Random random = new Random();
+                foreach (Receitas pegaDado in receitasDuplicadas)
+                {
+                    pegaDado.Titulo = "Receita-" + random.Next().ToString();
+                }
+                List<Receitas> novaLista = receitasUnicas.Concat(receitasDuplicadas).ToList();
+                string serializeSalvarDados2 = Newtonsoft.Json.JsonConvert.SerializeObject(novaLista, Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(Program.caminhoTXT, serializeSalvarDados2);
+
+                //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+                //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
+
+                //============================================================================
+
+                //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+
+                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
+                {
+                    if (
+                            DesconverteLerArquivoReceitas[i].Categoria != "Acompanhamento" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Bebida" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Prato Principal" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Sobremesa" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Salada" &&
+                            DesconverteLerArquivoReceitas[i].Categoria != "Não Especificada"
+                        )
+                    {
+                        MessageBox.Show("Alguma receita foi alterada indevidamente\nA [Categoria] foi alterada para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua [Categoria] será alterada para [Não Especificada]");
+                        DesconverteLerArquivoReceitas[i].Categoria = "Não Especificada";
+                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                    }
+                }
+
+                //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+                //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
+
+                //limpando as linhas e colunas do data grid view
+                dgvMostraReceitas.Rows.Clear();
+                dgvMostraReceitas.Columns.Clear();
+
+                //lendo o arquivo e desconvertendo ele para uma Lista do tipo Receitas
+                string caminhoTXT = @"c:\PastaReceitas\BancoDeReceitas.txt";
+
+                //string q recebe o valor do text box denominado txtPesquisarDado
+                string PesquisarDado = txtPesquisarDado.Text;
+
+                //se não digitar nada no textbox, mostrar a mensagem abaixo
+                if (string.IsNullOrEmpty(PesquisarDado))
+                {
+                    MessageBox.Show("Por favor, insira algum dado");
                 }
                 else
                 {
-                    receitasUnicas.Add(pegaDado);
-                }
-            }
-
-            if (TituloRepete)
-            {
-                MessageBox.Show("Alguma receita possui um título idêntico à outra por algum motivo.\nPara corrigir isso e evitar que ocorra algum problema, as receitas que tiveram o título repetido serão renomeadas para [Receita-ValorX].");
-            }
-
-            // adiciona um numero inteiro ao final de cada título da receita duplicada
-            Random random = new Random();
-            foreach (Receitas pegaDado in receitasDuplicadas)
-            {
-                pegaDado.Titulo = "Receita-" + random.Next().ToString();
-            }
-            List<Receitas> novaLista = receitasUnicas.Concat(receitasDuplicadas).ToList();
-            string serializeSalvarDados2 = Newtonsoft.Json.JsonConvert.SerializeObject(novaLista, Newtonsoft.Json.Formatting.Indented);
-            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados2);
-
-            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-            //================ FIM DA CORREÇÃO DO ERRO DE TÍTULO IDÊNTICO ================
-
-            //============================================================================
-
-            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ INICIO CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-
-            for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
-            {
-                if (
-                        DesconverteLerArquivoReceitas[i].Categoria != "Acompanhamento" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Bebida" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Prato Principal" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Sobremesa" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Salada" &&
-                        DesconverteLerArquivoReceitas[i].Categoria != "Não Especificada"
-                    )
-                {
-                    MessageBox.Show("Alguma receita foi alterada indevidamente\nA [Categoria] foi alterada para um valor diferente ao qual é aceitado no programa, portanto para a receita o qual ocorreu essa alteração, sua [Categoria] será alterada para [Não Especificada]");
-                    DesconverteLerArquivoReceitas[i].Categoria = "Não Especificada";
-                    string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                }
-            }
-
-            //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-            //================ FIM DA CORREÇÃO DO ERRO DE CATEGORIA NÃO ESPECIFICADA ================
-
-            //limpando as linhas e colunas do data grid view
-            dgvMostraReceitas.Rows.Clear();
-            dgvMostraReceitas.Columns.Clear();
-
-            //lendo o arquivo e desconvertendo ele para uma Lista do tipo Receitas
-            string caminhoTXT = @"c:\PastaReceitas\BancoDeReceitas.txt";
-
-            //string q recebe o valor do text box denominado txtPesquisarDado
-            string PesquisarDado = txtPesquisarDado.Text;
-
-            //se não digitar nada no textbox, mostrar a mensagem abaixo
-            if (string.IsNullOrEmpty(PesquisarDado))
-            {
-                MessageBox.Show("Por favor, insira algum dado");
-            }
-            else
-            {
-                //se digitar Tudo no textbox, mostrar TODAS as receitas cadastradas no sistema
-                if (PesquisarDado.Equals("Tudo", StringComparison.OrdinalIgnoreCase) && cbPesquisaReceitas.SelectedIndex == 0)
-                {
-                    dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
-                    dgvMostraReceitas.Columns.Add("Ingredientes", "Ingredientes");//index 2
-                    dgvMostraReceitas.Columns.Add("Modo de Preparo", "Modo de Preparo");//index 3
-                    dgvMostraReceitas.Columns.Add("Grau de Dificuldade", "Grau de Dificuldade");//index 4
-                    dgvMostraReceitas.Columns.Add("Autor", "Autor");//index 5
-                    dgvMostraReceitas.Columns.Add("Tempo de Preparo", "Tempo de Preparo");//index 6
-                    dgvMostraReceitas.Columns.Add("Categoria", "Categoria");//index 7
-                    dgvMostraReceitas.Columns.Add("Porções", "Porções");//index 8
-
-                    if (DesconverteLerArquivoReceitas != null)
-                    {
-                        foreach (Receitas pegaDados in DesconverteLerArquivoReceitas)
-                        {
-                            if (lerArquivoReceitas.Length > 2)
-                            {
-                                try
-                                {
-                                    if (DesconverteLerArquivoReceitas != null)
-                                    {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Ingredientes, pegaDados.ModoPreparo, pegaDados.GrauDificuldade, pegaDados.Autor, pegaDados.TempoPreparo, pegaDados.Categoria, pegaDados.QntdPratos);
-
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
-                                    }
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Não há receitas cadastradas!");
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Não há receitas cadastradas!");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Não há receitas cadastradas!");
-                    }
-                }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
-                else if (cbPesquisaReceitas.SelectedIndex == 0)
-                {
-                    bool receitasEncontradas = false;
-                    HashSet<string> CategoriasEncontradas = new HashSet<string>();
-
-                    if (DesconverteLerArquivoReceitas != null)
-                    {
-                        //basicamente cada if representa um tipo de campo da receita como ingredientes, titulo, modo de preparo etc
-                        //ele vai comparar o dado digitado com as strings contidas em cada campo, e se ele encontrar, ele vai 
-                        //adicionar a receita inteira para uma lista auxiliar de receitas encontradas e vai adicionar o campo em que o
-                        //dado digitado foi encontrado dentro o HashSet do tipo string e se ele não encontrar, vai dar uma msg de erro.
-                        //caso ocorra de encontrar o mesmo dado digitado em mais de um campo de uma mesma receita, ele só vai adicionar o campo
-                        //em que o dado foi encontrado.
-                        foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
-                        {
-                            try
-                            {
-                                if (pegaDado.Ingredientes.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
-                                {
-                                    if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
-                                    {
-                                        Program.ListaReceitasEncontradas.Add(pegaDado);
-                                        CategoriasEncontradas.Add("[Ingredientes]");
-                                        receitasEncontradas = true;
-                                    }
-                                    else
-                                    {
-                                        CategoriasEncontradas.Add("[Ingredientes]");
-                                        receitasEncontradas = true;
-                                    }
-                                }
-                                if (pegaDado.Titulo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
-                                {
-                                    if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
-                                    {
-                                        Program.ListaReceitasEncontradas.Add(pegaDado);
-                                        CategoriasEncontradas.Add("[Titulo]");
-                                        receitasEncontradas = true;
-                                    }
-                                    else
-                                    {
-                                        CategoriasEncontradas.Add("[Titulo]");
-                                        receitasEncontradas = true;
-                                    }
-                                }
-                                if (pegaDado.ModoPreparo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
-                                {
-                                    if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
-                                    {
-                                        Program.ListaReceitasEncontradas.Add(pegaDado);
-                                        CategoriasEncontradas.Add("[Modo Preparo]");
-                                        receitasEncontradas = true;
-                                    }
-                                    else
-                                    {
-                                        CategoriasEncontradas.Add("[Modo Preparo]");
-                                        receitasEncontradas = true;
-                                    }
-                                }
-                                if (pegaDado.TempoPreparo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
-                                {
-                                    if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
-                                    {
-                                        Program.ListaReceitasEncontradas.Add(pegaDado);
-                                        CategoriasEncontradas.Add("[Tempo Preparo]");
-                                        receitasEncontradas = true;
-                                    }
-                                    else
-                                    {
-                                        CategoriasEncontradas.Add("[Tempo Preparo]");
-                                        receitasEncontradas = true;
-                                    }
-                                }
-                                if (pegaDado.Autor.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
-                                {
-                                    if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
-                                    {
-                                        Program.ListaReceitasEncontradas.Add(pegaDado);
-                                        CategoriasEncontradas.Add("[Autor]");
-                                        receitasEncontradas = true;
-                                    }
-                                    else
-                                    {
-                                        CategoriasEncontradas.Add("[Autor]");
-                                        receitasEncontradas = true;
-                                    }
-                                }
-                                if (pegaDado.GrauDificuldade.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
-                                {
-                                    if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
-                                    {
-                                        Program.ListaReceitasEncontradas.Add(pegaDado);
-                                        CategoriasEncontradas.Add("[Grau de Dificuldade]");
-                                        receitasEncontradas = true;
-                                    }
-                                    else
-                                    {
-                                        CategoriasEncontradas.Add("[Grau de Dificuldade]");
-                                        receitasEncontradas = true;
-                                    }
-                                }
-                            } catch
-                            {
-                                MessageBox.Show("Os dados do arquivo estão corrompidos.");
-                                for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
-                                {
-                                    if (DesconverteLerArquivoReceitas[i].Titulo == null)
-                                    {
-                                        DesconverteLerArquivoReceitas[i].Titulo = "Arquivo Corrompido.";
-                                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                                    }
-                                    else if (DesconverteLerArquivoReceitas[i].Ingredientes == null)
-                                    {
-                                        DesconverteLerArquivoReceitas[i].Ingredientes = "Arquivo Corrompido.";
-                                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                                    }
-                                    else if (DesconverteLerArquivoReceitas[i].ModoPreparo == null)
-                                    {
-                                        DesconverteLerArquivoReceitas[i].ModoPreparo = "Arquivo Corrompido.";
-                                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                                    }
-                                    else if (DesconverteLerArquivoReceitas[i].Categoria == null)
-                                    {
-                                        DesconverteLerArquivoReceitas[i].Categoria = "Arquivo Corrompido.";
-                                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                                    }
-                                    else if (DesconverteLerArquivoReceitas[i].GrauDificuldade == null)
-                                    {
-                                        DesconverteLerArquivoReceitas[i].GrauDificuldade = "Arquivo Corrompido.";
-                                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                                    }
-                                    else if (DesconverteLerArquivoReceitas[i].QntdPratos == null)
-                                    {
-                                        DesconverteLerArquivoReceitas[i].QntdPratos = 1;
-                                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                                    }
-                                    else if (DesconverteLerArquivoReceitas[i].Autor == null)
-                                    {
-                                        DesconverteLerArquivoReceitas[i].Autor = "Arquivo Corrompido.";
-                                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                                    }
-                                    else if (DesconverteLerArquivoReceitas[i].TempoPreparo == null)
-                                    {
-                                        DesconverteLerArquivoReceitas[i].TempoPreparo = "Arquivo Corrompido.";
-                                        string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
-                                        File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Não há receitas cadastradas!");
-                    }
-
-                    //caso nenhum dos ifs seja retornado true, ele cai aq como falso e da essa mensagem de erro, se não ele vai continuar rodando.
-                    if (!receitasEncontradas)
-                    {
-                        MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
-                    }
-                    //aqui ele vai mostrar todos os campos e todos os dados deles, de todas as receitas que foram encontradas
-                    //de dentro da lista de receitas encontradas com o valor digitado.
-                    else
+                    //se digitar Tudo no textbox, mostrar TODAS as receitas cadastradas no sistema
+                    if (PesquisarDado.Equals("Tudo", StringComparison.OrdinalIgnoreCase) && cbPesquisaReceitas.SelectedIndex == 0)
                     {
                         dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
                         dgvMostraReceitas.Columns.Add("Ingredientes", "Ingredientes");//index 2
@@ -830,536 +635,756 @@ namespace ReceitinhasFederais
                         dgvMostraReceitas.Columns.Add("Categoria", "Categoria");//index 7
                         dgvMostraReceitas.Columns.Add("Porções", "Porções");//index 8
 
-                        foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                        if (DesconverteLerArquivoReceitas != null)
                         {
-                            if (lerArquivoReceitas.Length > 2)
+                            foreach (Receitas pegaDados in DesconverteLerArquivoReceitas)
                             {
-                                try
+                                if (lerArquivoReceitas.Length > 2)
                                 {
-                                    if (DesconverteLerArquivoReceitas != null)
+                                    try
                                     {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Ingredientes, pegaDados.ModoPreparo, pegaDados.GrauDificuldade, pegaDados.Autor, pegaDados.TempoPreparo, pegaDados.Categoria, pegaDados.QntdPratos);
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Ingredientes, pegaDados.ModoPreparo, pegaDados.GrauDificuldade, pegaDados.Autor, pegaDados.TempoPreparo, pegaDados.Categoria, pegaDados.QntdPratos);
 
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
                                     }
                                 }
-                                catch
+                                else
                                 {
                                     MessageBox.Show("Não há receitas cadastradas!");
                                 }
                             }
-                            else
-                            {
-                                MessageBox.Show("Não há receitas cadastradas!");
-                            }
                         }
-                        //vai mostrar uma messageBox dizendo essa mensagem para todos os campos que a informação digitada foi encontrada
-                        string DadoEncontradoEm = "Dado encontrado nos seguintes filtros:\n" + Environment.NewLine;
-                        foreach (string category in CategoriasEncontradas)
+                        else
                         {
-                            DadoEncontradoEm += category + Environment.NewLine;
-                        }
-                        MessageBox.Show(DadoEncontradoEm);
-                        Program.ListaReceitasEncontradas.Clear();
-                    }
-                }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
-                else if (cbPesquisaReceitas.SelectedIndex == 1)
-                {
-                    bool receitasEncontradas = false;
-                    HashSet<string> CategoriasEncontradas = new HashSet<string>();
-
-                    if (DesconverteLerArquivoReceitas != null)
-                    {
-                        foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
-                        {
-                            if (pegaDado.Titulo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
-                            {
-                                Program.ListaReceitasEncontradas.Add(pegaDado);
-                                CategoriasEncontradas.Add("[Titulo]");
-                                receitasEncontradas = true;
-                            }
+                            MessageBox.Show("Não há receitas cadastradas!");
                         }
                     }
-
-
-                    if (!receitasEncontradas)
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+                    else if (cbPesquisaReceitas.SelectedIndex == 0)
                     {
-                        MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
-                    }
-                    else
-                    {
-                        dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+                        bool receitasEncontradas = false;
+                        HashSet<string> CategoriasEncontradas = new HashSet<string>();
 
-                        foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                        if (DesconverteLerArquivoReceitas != null)
                         {
-                            if (lerArquivoReceitas.Length > 2)
+                            //basicamente cada if representa um tipo de campo da receita como ingredientes, titulo, modo de preparo etc
+                            //ele vai comparar o dado digitado com as strings contidas em cada campo, e se ele encontrar, ele vai 
+                            //adicionar a receita inteira para uma lista auxiliar de receitas encontradas e vai adicionar o campo em que o
+                            //dado digitado foi encontrado dentro o HashSet do tipo string e se ele não encontrar, vai dar uma msg de erro.
+                            //caso ocorra de encontrar o mesmo dado digitado em mais de um campo de uma mesma receita, ele só vai adicionar o campo
+                            //em que o dado foi encontrado.
+                            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
                             {
                                 try
                                 {
-                                    if (DesconverteLerArquivoReceitas != null)
+                                    if (pegaDado.Ingredientes.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
                                     {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo);
-
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                        if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
+                                        {
+                                            Program.ListaReceitasEncontradas.Add(pegaDado);
+                                            CategoriasEncontradas.Add("[Ingredientes]");
+                                            receitasEncontradas = true;
+                                        }
+                                        else
+                                        {
+                                            CategoriasEncontradas.Add("[Ingredientes]");
+                                            receitasEncontradas = true;
+                                        }
+                                    }
+                                    if (pegaDado.Titulo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                                    {
+                                        if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
+                                        {
+                                            Program.ListaReceitasEncontradas.Add(pegaDado);
+                                            CategoriasEncontradas.Add("[Titulo]");
+                                            receitasEncontradas = true;
+                                        }
+                                        else
+                                        {
+                                            CategoriasEncontradas.Add("[Titulo]");
+                                            receitasEncontradas = true;
+                                        }
+                                    }
+                                    if (pegaDado.ModoPreparo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                                    {
+                                        if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
+                                        {
+                                            Program.ListaReceitasEncontradas.Add(pegaDado);
+                                            CategoriasEncontradas.Add("[Modo Preparo]");
+                                            receitasEncontradas = true;
+                                        }
+                                        else
+                                        {
+                                            CategoriasEncontradas.Add("[Modo Preparo]");
+                                            receitasEncontradas = true;
+                                        }
+                                    }
+                                    if (pegaDado.TempoPreparo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                                    {
+                                        if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
+                                        {
+                                            Program.ListaReceitasEncontradas.Add(pegaDado);
+                                            CategoriasEncontradas.Add("[Tempo Preparo]");
+                                            receitasEncontradas = true;
+                                        }
+                                        else
+                                        {
+                                            CategoriasEncontradas.Add("[Tempo Preparo]");
+                                            receitasEncontradas = true;
+                                        }
+                                    }
+                                    if (pegaDado.Autor.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                                    {
+                                        if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
+                                        {
+                                            Program.ListaReceitasEncontradas.Add(pegaDado);
+                                            CategoriasEncontradas.Add("[Autor]");
+                                            receitasEncontradas = true;
+                                        }
+                                        else
+                                        {
+                                            CategoriasEncontradas.Add("[Autor]");
+                                            receitasEncontradas = true;
+                                        }
+                                    }
+                                    if (pegaDado.GrauDificuldade.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                                    {
+                                        if (!Program.ListaReceitasEncontradas.Contains(pegaDado))
+                                        {
+                                            Program.ListaReceitasEncontradas.Add(pegaDado);
+                                            CategoriasEncontradas.Add("[Grau de Dificuldade]");
+                                            receitasEncontradas = true;
+                                        }
+                                        else
+                                        {
+                                            CategoriasEncontradas.Add("[Grau de Dificuldade]");
+                                            receitasEncontradas = true;
+                                        }
                                     }
                                 }
                                 catch
                                 {
-                                    MessageBox.Show("Não há receitas cadastradas!");
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Não há receitas cadastradas!");
-                            }
-                        }
-                        string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
-                        foreach (string category in CategoriasEncontradas)
-                        {
-                            DadoEncontradoEm += category; // add found categories to message
-                        }
-                        MessageBox.Show(DadoEncontradoEm);
-                        Program.ListaReceitasEncontradas.Clear();
-                    }
-                }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
-                else if (cbPesquisaReceitas.SelectedIndex == 2)
-                {
-                    bool receitasEncontradas = false;
-                    HashSet<string> CategoriasEncontradas = new HashSet<string>();
-
-                    if (DesconverteLerArquivoReceitas != null)
-                    {
-                        foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
-                        {
-                            if (pegaDado.Ingredientes.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
-                            {
-                                Program.ListaReceitasEncontradas.Add(pegaDado);
-                                CategoriasEncontradas.Add("[Ingredientes]");
-                                receitasEncontradas = true;
-                            }
-                        }
-                    }
-
-
-                    if (!receitasEncontradas)
-                    {
-                        MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
-                    }
-                    else
-                    {
-                        dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
-                        dgvMostraReceitas.Columns.Add("Ingredientes", "Ingredientes");//index 2
-
-                        foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
-                        {
-                            if (lerArquivoReceitas.Length > 2)
-                            {
-                                try
-                                {
-                                    if (DesconverteLerArquivoReceitas != null)
+                                    MessageBox.Show("Os dados do arquivo estão corrompidos.");
+                                    for (int i = 0; i < DesconverteLerArquivoReceitas.Count; i++)
                                     {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Ingredientes);
+                                        if (DesconverteLerArquivoReceitas[i].Titulo == null)
+                                        {
+                                            DesconverteLerArquivoReceitas[i].Titulo = "Arquivo Corrompido.";
+                                            string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                                            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                                        }
+                                        else if (DesconverteLerArquivoReceitas[i].Ingredientes == null)
+                                        {
+                                            DesconverteLerArquivoReceitas[i].Ingredientes = "Arquivo Corrompido.";
+                                            string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                                            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                                        }
+                                        else if (DesconverteLerArquivoReceitas[i].ModoPreparo == null)
+                                        {
+                                            DesconverteLerArquivoReceitas[i].ModoPreparo = "Arquivo Corrompido.";
+                                            string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                                            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                                        }
+                                        else if (DesconverteLerArquivoReceitas[i].Categoria == null)
+                                        {
+                                            DesconverteLerArquivoReceitas[i].Categoria = "Arquivo Corrompido.";
+                                            string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                                            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                                        }
+                                        else if (DesconverteLerArquivoReceitas[i].GrauDificuldade == null)
+                                        {
+                                            DesconverteLerArquivoReceitas[i].GrauDificuldade = "Arquivo Corrompido.";
+                                            string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                                            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                                        }
+                                        else if (DesconverteLerArquivoReceitas[i].QntdPratos == null)
+                                        {
+                                            DesconverteLerArquivoReceitas[i].QntdPratos = 1;
+                                            string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                                            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                                        }
+                                        else if (DesconverteLerArquivoReceitas[i].Autor == null)
+                                        {
+                                            DesconverteLerArquivoReceitas[i].Autor = "Arquivo Corrompido.";
+                                            string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                                            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                                        }
+                                        else if (DesconverteLerArquivoReceitas[i].TempoPreparo == null)
+                                        {
+                                            DesconverteLerArquivoReceitas[i].TempoPreparo = "Arquivo Corrompido.";
+                                            string serializeSalvarDados = Newtonsoft.Json.JsonConvert.SerializeObject(DesconverteLerArquivoReceitas, Newtonsoft.Json.Formatting.Indented);
+                                            File.WriteAllText(Program.caminhoTXT, serializeSalvarDados);
+                                        }
 
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                                     }
                                 }
-                                catch
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Não há receitas cadastradas!");
+                        }
+
+                        //caso nenhum dos ifs seja retornado true, ele cai aq como falso e da essa mensagem de erro, se não ele vai continuar rodando.
+                        if (!receitasEncontradas)
+                        {
+                            MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
+                        }
+                        //aqui ele vai mostrar todos os campos e todos os dados deles, de todas as receitas que foram encontradas
+                        //de dentro da lista de receitas encontradas com o valor digitado.
+                        else
+                        {
+                            dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+                            dgvMostraReceitas.Columns.Add("Ingredientes", "Ingredientes");//index 2
+                            dgvMostraReceitas.Columns.Add("Modo de Preparo", "Modo de Preparo");//index 3
+                            dgvMostraReceitas.Columns.Add("Grau de Dificuldade", "Grau de Dificuldade");//index 4
+                            dgvMostraReceitas.Columns.Add("Autor", "Autor");//index 5
+                            dgvMostraReceitas.Columns.Add("Tempo de Preparo", "Tempo de Preparo");//index 6
+                            dgvMostraReceitas.Columns.Add("Categoria", "Categoria");//index 7
+                            dgvMostraReceitas.Columns.Add("Porções", "Porções");//index 8
+
+                            foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                            {
+                                if (lerArquivoReceitas.Length > 2)
                                 {
-                                    MessageBox.Show("Não há receitas cadastradas!");
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Não há receitas cadastradas!");
-                            }
-                        }
-                        string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
-                        foreach (string category in CategoriasEncontradas)
-                        {
-                            DadoEncontradoEm += category; // add found categories to message
-                        }
-                        MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
-                        Program.ListaReceitasEncontradas.Clear();
-                    }
-                }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
-                else if (cbPesquisaReceitas.SelectedIndex == 3)
-                {
-                    bool receitasEncontradas = false;
-                    HashSet<string> CategoriasEncontradas = new HashSet<string>();
-
-                    if (DesconverteLerArquivoReceitas != null)
-                    {
-                        foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
-                        {
-                            if (pegaDado.ModoPreparo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
-                            {
-                                Program.ListaReceitasEncontradas.Add(pegaDado);
-                                CategoriasEncontradas.Add("[Modo Preparo]");
-                                receitasEncontradas = true;
-                            }
-                        }
-                    }
-
-
-                    if (!receitasEncontradas)
-                    {
-                        MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
-                    }
-                    else
-                    {
-                        dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
-                        dgvMostraReceitas.Columns.Add("Modo de Preparo", "Modo Preparo");//index 3
-
-                        foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
-                        {
-                            if (lerArquivoReceitas.Length > 2)
-                            {
-                                try
-                                {
-                                    if (DesconverteLerArquivoReceitas != null)
+                                    try
                                     {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.ModoPreparo);
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Ingredientes, pegaDados.ModoPreparo, pegaDados.GrauDificuldade, pegaDados.Autor, pegaDados.TempoPreparo, pegaDados.Categoria, pegaDados.QntdPratos);
 
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
                                     }
                                 }
-                                catch
+                                else
                                 {
                                     MessageBox.Show("Não há receitas cadastradas!");
                                 }
                             }
-                            else
+                            //vai mostrar uma messageBox dizendo essa mensagem para todos os campos que a informação digitada foi encontrada
+                            string DadoEncontradoEm = "Dado encontrado nos seguintes filtros:\n" + Environment.NewLine;
+                            foreach (string category in CategoriasEncontradas)
                             {
-                                MessageBox.Show("Não há receitas cadastradas!");
+                                DadoEncontradoEm += category + Environment.NewLine;
                             }
+                            MessageBox.Show(DadoEncontradoEm);
+                            Program.ListaReceitasEncontradas.Clear();
                         }
-                        string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
-                        foreach (string category in CategoriasEncontradas)
-                        {
-                            DadoEncontradoEm += category; // add found categories to message
-                        }
-                        MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
-                        Program.ListaReceitasEncontradas.Clear();
                     }
-                }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
-                else if (cbPesquisaReceitas.SelectedIndex == 4)
-                {
-                    bool receitasEncontradas = false;
-                    HashSet<string> CategoriasEncontradas = new HashSet<string>();
-
-                    if (DesconverteLerArquivoReceitas != null)
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+                    else if (cbPesquisaReceitas.SelectedIndex == 1)
                     {
-                        foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+                        bool receitasEncontradas = false;
+                        HashSet<string> CategoriasEncontradas = new HashSet<string>();
+
+                        if (DesconverteLerArquivoReceitas != null)
                         {
-                            if (pegaDado.GrauDificuldade.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
                             {
-                                Program.ListaReceitasEncontradas.Add(pegaDado);
-                                CategoriasEncontradas.Add("[Grau de Dificuldade]");
-                                receitasEncontradas = true;
-                            }
-                        }
-                    }
-
-
-                    if (!receitasEncontradas)
-                    {
-                        MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
-                    }
-                    else
-                    {
-                        dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
-                        dgvMostraReceitas.Columns.Add("Grau de Dificuldade", "Grau de Dificuldade");//index 4
-
-                        foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
-                        {
-                            if (lerArquivoReceitas.Length > 2)
-                            {
-                                try
+                                if (pegaDado.Titulo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
                                 {
-                                    if (DesconverteLerArquivoReceitas != null)
-                                    {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.GrauDificuldade);
+                                    Program.ListaReceitasEncontradas.Add(pegaDado);
+                                    CategoriasEncontradas.Add("[Titulo]");
+                                    receitasEncontradas = true;
+                                }
+                            }
+                        }
 
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                        if (!receitasEncontradas)
+                        {
+                            MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
+                        }
+                        else
+                        {
+                            dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+
+                            foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                            {
+                                if (lerArquivoReceitas.Length > 2)
+                                {
+                                    try
+                                    {
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo);
+
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
                                     }
                                 }
-                                catch
+                                else
                                 {
                                     MessageBox.Show("Não há receitas cadastradas!");
                                 }
                             }
-                            else
+                            string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
+                            foreach (string category in CategoriasEncontradas)
                             {
-                                MessageBox.Show("Não há receitas cadastradas!");
+                                DadoEncontradoEm += category; // add found categories to message
                             }
+                            MessageBox.Show(DadoEncontradoEm);
+                            Program.ListaReceitasEncontradas.Clear();
                         }
-                        string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
-                        foreach (string category in CategoriasEncontradas)
-                        {
-                            DadoEncontradoEm += category; // add found categories to message
-                        }
-                        MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
-                        Program.ListaReceitasEncontradas.Clear();
                     }
-                }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
-                else if (cbPesquisaReceitas.SelectedIndex == 5)
-                {
-                    bool receitasEncontradas = false;
-                    HashSet<string> CategoriasEncontradas = new HashSet<string>();
-
-                    if (DesconverteLerArquivoReceitas != null)
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+                    else if (cbPesquisaReceitas.SelectedIndex == 2)
                     {
-                        foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+                        bool receitasEncontradas = false;
+                        HashSet<string> CategoriasEncontradas = new HashSet<string>();
+
+                        if (DesconverteLerArquivoReceitas != null)
                         {
-                            if (pegaDado.Autor.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
                             {
-                                Program.ListaReceitasEncontradas.Add(pegaDado);
-                                CategoriasEncontradas.Add("[Autor]");
-                                receitasEncontradas = true;
-                            }
-                        }
-                    }
-
-
-                    if (!receitasEncontradas)
-                    {
-                        MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
-                    }
-                    else
-                    {
-                        dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
-                        dgvMostraReceitas.Columns.Add("Autor", "Autor");//index 5
-
-                        foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
-                        {
-                            if (lerArquivoReceitas.Length > 2)
-                            {
-                                try
+                                if (pegaDado.Ingredientes.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
                                 {
-                                    if (DesconverteLerArquivoReceitas != null)
-                                    {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Autor);
+                                    Program.ListaReceitasEncontradas.Add(pegaDado);
+                                    CategoriasEncontradas.Add("[Ingredientes]");
+                                    receitasEncontradas = true;
+                                }
+                            }
+                        }
 
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                        if (!receitasEncontradas)
+                        {
+                            MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
+                        }
+                        else
+                        {
+                            dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+                            dgvMostraReceitas.Columns.Add("Ingredientes", "Ingredientes");//index 2
+
+                            foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                            {
+                                if (lerArquivoReceitas.Length > 2)
+                                {
+                                    try
+                                    {
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Ingredientes);
+
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
                                     }
                                 }
-                                catch
+                                else
                                 {
                                     MessageBox.Show("Não há receitas cadastradas!");
                                 }
                             }
-                            else
+                            string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
+                            foreach (string category in CategoriasEncontradas)
                             {
-                                MessageBox.Show("Não há receitas cadastradas!");
+                                DadoEncontradoEm += category; // add found categories to message
                             }
+                            MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
+                            Program.ListaReceitasEncontradas.Clear();
                         }
-                        string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
-                        foreach (string category in CategoriasEncontradas)
-                        {
-                            DadoEncontradoEm += category; // add found categories to message
-                        }
-                        MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
-                        Program.ListaReceitasEncontradas.Clear();
                     }
-                }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
-                else if (cbPesquisaReceitas.SelectedIndex == 6)
-                {
-                    bool receitasEncontradas = false;
-                    HashSet<string> CategoriasEncontradas = new HashSet<string>();
-
-                    if (DesconverteLerArquivoReceitas != null)
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+                    else if (cbPesquisaReceitas.SelectedIndex == 3)
                     {
-                        foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+                        bool receitasEncontradas = false;
+                        HashSet<string> CategoriasEncontradas = new HashSet<string>();
+
+                        if (DesconverteLerArquivoReceitas != null)
                         {
-                            if (pegaDado.TempoPreparo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
                             {
-                                Program.ListaReceitasEncontradas.Add(pegaDado);
-                                CategoriasEncontradas.Add("[Tempo de Preparo]");
-                                receitasEncontradas = true;
-                            }
-                        }
-                    }
-
-
-                    if (!receitasEncontradas)
-                    {
-                        MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
-                    }
-                    else
-                    {
-                        dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
-                        dgvMostraReceitas.Columns.Add("Tempo de Preparo", "Tempo de Preparo");//index 6
-
-                        foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
-                        {
-                            if (lerArquivoReceitas.Length > 2)
-                            {
-                                try
+                                if (pegaDado.ModoPreparo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
                                 {
-                                    if (DesconverteLerArquivoReceitas != null)
-                                    {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.TempoPreparo);
+                                    Program.ListaReceitasEncontradas.Add(pegaDado);
+                                    CategoriasEncontradas.Add("[Modo Preparo]");
+                                    receitasEncontradas = true;
+                                }
+                            }
+                        }
 
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                        if (!receitasEncontradas)
+                        {
+                            MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
+                        }
+                        else
+                        {
+                            dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+                            dgvMostraReceitas.Columns.Add("Modo de Preparo", "Modo Preparo");//index 3
+
+                            foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                            {
+                                if (lerArquivoReceitas.Length > 2)
+                                {
+                                    try
+                                    {
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.ModoPreparo);
+
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
                                     }
                                 }
-                                catch
+                                else
                                 {
                                     MessageBox.Show("Não há receitas cadastradas!");
                                 }
                             }
-                            else
+                            string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
+                            foreach (string category in CategoriasEncontradas)
                             {
-                                MessageBox.Show("Não há receitas cadastradas!");
+                                DadoEncontradoEm += category; // add found categories to message
                             }
+                            MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
+                            Program.ListaReceitasEncontradas.Clear();
                         }
-                        string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
-                        foreach (string category in CategoriasEncontradas)
-                        {
-                            DadoEncontradoEm += category; // add found categories to message
-                        }
-                        MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
-                        Program.ListaReceitasEncontradas.Clear();
                     }
-                }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
-                else if (cbPesquisaReceitas.SelectedIndex == 7)
-                {
-                    bool receitasEncontradas = false;
-                    HashSet<string> CategoriasEncontradas = new HashSet<string>();
-
-                    if (DesconverteLerArquivoReceitas != null)
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+                    else if (cbPesquisaReceitas.SelectedIndex == 4)
                     {
-                        foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+                        bool receitasEncontradas = false;
+                        HashSet<string> CategoriasEncontradas = new HashSet<string>();
+
+                        if (DesconverteLerArquivoReceitas != null)
                         {
-                            if (pegaDado.Categoria.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
                             {
-                                Program.ListaReceitasEncontradas.Add(pegaDado);
-                                CategoriasEncontradas.Add("[Categoria]");
-                                receitasEncontradas = true;
-                            }
-                        }
-                    }
-
-
-                    if (!receitasEncontradas)
-                    {
-                        MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
-                    }
-                    else
-                    {
-                        dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
-                        dgvMostraReceitas.Columns.Add("Categoria", "Categoria");//index 7
-
-                        foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
-                        {
-                            if (lerArquivoReceitas.Length > 2)
-                            {
-                                try
+                                if (pegaDado.GrauDificuldade.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
                                 {
-                                    if (DesconverteLerArquivoReceitas != null)
-                                    {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Categoria);
+                                    Program.ListaReceitasEncontradas.Add(pegaDado);
+                                    CategoriasEncontradas.Add("[Grau de Dificuldade]");
+                                    receitasEncontradas = true;
+                                }
+                            }
+                        }
 
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                        if (!receitasEncontradas)
+                        {
+                            MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
+                        }
+                        else
+                        {
+                            dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+                            dgvMostraReceitas.Columns.Add("Grau de Dificuldade", "Grau de Dificuldade");//index 4
+
+                            foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                            {
+                                if (lerArquivoReceitas.Length > 2)
+                                {
+                                    try
+                                    {
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.GrauDificuldade);
+
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
                                     }
                                 }
-                                catch
+                                else
                                 {
                                     MessageBox.Show("Não há receitas cadastradas!");
                                 }
                             }
-                            else
+                            string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
+                            foreach (string category in CategoriasEncontradas)
                             {
-                                MessageBox.Show("Não há receitas cadastradas!");
+                                DadoEncontradoEm += category; // add found categories to message
                             }
+                            MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
+                            Program.ListaReceitasEncontradas.Clear();
                         }
-                        string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
-                        foreach (string category in CategoriasEncontradas)
-                        {
-                            DadoEncontradoEm += category; // add found categories to message
-                        }
-                        MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
-                        Program.ListaReceitasEncontradas.Clear();
                     }
-                }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
-                else if (cbPesquisaReceitas.SelectedIndex == 8)
-                {
-                    bool receitasEncontradas = false;
-                    HashSet<string> CategoriasEncontradas = new HashSet<string>();
-
-                    if (DesconverteLerArquivoReceitas != null)
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+                    else if (cbPesquisaReceitas.SelectedIndex == 5)
                     {
-                        foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+                        bool receitasEncontradas = false;
+                        HashSet<string> CategoriasEncontradas = new HashSet<string>();
+
+                        if (DesconverteLerArquivoReceitas != null)
                         {
-                            if (pegaDado.QntdPratos.ToString().Equals(PesquisarDado))
+                            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
                             {
-                                Program.ListaReceitasEncontradas.Add(pegaDado);
-                                CategoriasEncontradas.Add("[Porções]");
-                                receitasEncontradas = true;
-                            }
-                        }
-                    }
-
-
-                    if (!receitasEncontradas)
-                    {
-                        MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
-                    }
-                    else
-                    {
-                        dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
-                        dgvMostraReceitas.Columns.Add("Porções", "Porções");//index 8
-
-                        foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
-                        {
-                            if (lerArquivoReceitas.Length > 2)
-                            {
-                                try
+                                if (pegaDado.Autor.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
                                 {
-                                    if (DesconverteLerArquivoReceitas != null)
-                                    {
-                                        dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.QntdPratos);
+                                    Program.ListaReceitasEncontradas.Add(pegaDado);
+                                    CategoriasEncontradas.Add("[Autor]");
+                                    receitasEncontradas = true;
+                                }
+                            }
+                        }
 
-                                        dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                        if (!receitasEncontradas)
+                        {
+                            MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
+                        }
+                        else
+                        {
+                            dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+                            dgvMostraReceitas.Columns.Add("Autor", "Autor");//index 5
+
+                            foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                            {
+                                if (lerArquivoReceitas.Length > 2)
+                                {
+                                    try
+                                    {
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Autor);
+
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
                                     }
                                 }
-                                catch
+                                else
                                 {
                                     MessageBox.Show("Não há receitas cadastradas!");
                                 }
                             }
-                            else
+                            string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
+                            foreach (string category in CategoriasEncontradas)
                             {
-                                MessageBox.Show("Não há receitas cadastradas!");
+                                DadoEncontradoEm += category; // add found categories to message
+                            }
+                            MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
+                            Program.ListaReceitasEncontradas.Clear();
+                        }
+                    }
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+                    else if (cbPesquisaReceitas.SelectedIndex == 6)
+                    {
+                        bool receitasEncontradas = false;
+                        HashSet<string> CategoriasEncontradas = new HashSet<string>();
+
+                        if (DesconverteLerArquivoReceitas != null)
+                        {
+                            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+                            {
+                                if (pegaDado.TempoPreparo.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                                {
+                                    Program.ListaReceitasEncontradas.Add(pegaDado);
+                                    CategoriasEncontradas.Add("[Tempo de Preparo]");
+                                    receitasEncontradas = true;
+                                }
                             }
                         }
-                        string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
-                        foreach (string category in CategoriasEncontradas)
+
+
+                        if (!receitasEncontradas)
                         {
-                            DadoEncontradoEm += category; // add found categories to message
+                            MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
                         }
-                        MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
-                        Program.ListaReceitasEncontradas.Clear();
+                        else
+                        {
+                            dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+                            dgvMostraReceitas.Columns.Add("Tempo de Preparo", "Tempo de Preparo");//index 6
+
+                            foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                            {
+                                if (lerArquivoReceitas.Length > 2)
+                                {
+                                    try
+                                    {
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.TempoPreparo);
+
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Não há receitas cadastradas!");
+                                }
+                            }
+                            string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
+                            foreach (string category in CategoriasEncontradas)
+                            {
+                                DadoEncontradoEm += category; // add found categories to message
+                            }
+                            MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
+                            Program.ListaReceitasEncontradas.Clear();
+                        }
                     }
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+                    else if (cbPesquisaReceitas.SelectedIndex == 7)
+                    {
+                        bool receitasEncontradas = false;
+                        HashSet<string> CategoriasEncontradas = new HashSet<string>();
+
+                        if (DesconverteLerArquivoReceitas != null)
+                        {
+                            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+                            {
+                                if (pegaDado.Categoria.IndexOf(PesquisarDado, StringComparison.OrdinalIgnoreCase) != -1)
+                                {
+                                    Program.ListaReceitasEncontradas.Add(pegaDado);
+                                    CategoriasEncontradas.Add("[Categoria]");
+                                    receitasEncontradas = true;
+                                }
+                            }
+                        }
+
+
+                        if (!receitasEncontradas)
+                        {
+                            MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
+                        }
+                        else
+                        {
+                            dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+                            dgvMostraReceitas.Columns.Add("Categoria", "Categoria");//index 7
+
+                            foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                            {
+                                if (lerArquivoReceitas.Length > 2)
+                                {
+                                    try
+                                    {
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.Categoria);
+
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Não há receitas cadastradas!");
+                                }
+                            }
+                            string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
+                            foreach (string category in CategoriasEncontradas)
+                            {
+                                DadoEncontradoEm += category; // add found categories to message
+                            }
+                            MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
+                            Program.ListaReceitasEncontradas.Clear();
+                        }
+                    }
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+                    else if (cbPesquisaReceitas.SelectedIndex == 8)
+                    {
+                        bool receitasEncontradas = false;
+                        HashSet<string> CategoriasEncontradas = new HashSet<string>();
+
+                        if (DesconverteLerArquivoReceitas != null)
+                        {
+                            foreach (Receitas pegaDado in DesconverteLerArquivoReceitas)
+                            {
+                                if (pegaDado.QntdPratos.ToString().Equals(PesquisarDado))
+                                {
+                                    Program.ListaReceitasEncontradas.Add(pegaDado);
+                                    CategoriasEncontradas.Add("[Porções]");
+                                    receitasEncontradas = true;
+                                }
+                            }
+                        }
+
+
+                        if (!receitasEncontradas)
+                        {
+                            MessageBox.Show("Não foi encontrado nenhum dado no filtro [" + cbPesquisaReceitas.Text + "] com o dado inserido.");
+                        }
+                        else
+                        {
+                            dgvMostraReceitas.Columns.Add("Titulo", "Titulo");//index 1
+                            dgvMostraReceitas.Columns.Add("Porções", "Porções");//index 8
+
+                            foreach (Receitas pegaDados in Program.ListaReceitasEncontradas)
+                            {
+                                if (lerArquivoReceitas.Length > 2)
+                                {
+                                    try
+                                    {
+                                        if (DesconverteLerArquivoReceitas != null)
+                                        {
+                                            dgvMostraReceitas.Rows.Add(pegaDados.Titulo, pegaDados.QntdPratos);
+
+                                            dgvMostraReceitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Não há receitas cadastradas!");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Não há receitas cadastradas!");
+                                }
+                            }
+                            string DadoEncontradoEm = "Dado encontrado com sucesso no filtro ";
+                            foreach (string category in CategoriasEncontradas)
+                            {
+                                DadoEncontradoEm += category; // add found categories to message
+                            }
+                            MessageBox.Show(DadoEncontradoEm + Environment.NewLine + "\nO Título será mostrado para identificar de qual receita o dado se trata.");
+                            Program.ListaReceitasEncontradas.Clear();
+                        }
+                    }
+                    //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
+                    //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
                 }
-                //se digitar qualquer coisa com o filtro Tudo selecionado, esse if vai pesquisar o valor digitado em TODOS os campos da receita
-                //e caso encontrar, vai ir mostrando todos os dados e falando onde ele foi encontrado(qual campo da receita)
+            } else
+            {
+                MessageBox.Show("Não há receitas cadastradas no sistema!");
             }
         }
 
